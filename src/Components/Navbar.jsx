@@ -3,15 +3,15 @@ import logo from "../assets/logo.png"
 import { Link } from 'react-router';
 const Navbar = () => {
 
-    const link=<div className='flex gap-6 font-bold text-lg'>
+    const link=<div className='flex flex-col lg:flex-row gap-2 lg:gap-6 font-bold text-lg'>
 
-    <Link>Home</Link>
+    <Link to="/">Home</Link>
         <Link>Parent</Link>
        <Link>About</Link>
 
     </div>
   return (
-   <div className="navbar bg-gray-200 text-black shadow-sm">
+   <div className="navbar bg-gray-200 text-black shadow-sm py-3">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -19,7 +19,8 @@ const Navbar = () => {
       </div> 
       <ul
         tabIndex="-1"
-        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+        className="menu bg-white menu-sm dropdown-content rounded-box z-1 mt-3 w-52 p-2 shadow">
+            {link}
         
       </ul>
     </div>
@@ -30,8 +31,9 @@ const Navbar = () => {
       {link}
     </ul>
   </div>
-  <div className="navbar-end">
-    <a className="btn">Button</a>
+  <div className="navbar-end flex gap-2">
+    <Link to="/auth" className="btn btn-accent font-bold">Join</Link>
+
   </div>
 </div>
   );
