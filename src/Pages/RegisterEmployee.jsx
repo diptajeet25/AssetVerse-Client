@@ -1,4 +1,6 @@
+
 import React from 'react';
+import { Link } from 'react-router';
 
 const RegisterEmployee = () => {
 
@@ -6,7 +8,7 @@ const RegisterEmployee = () => {
   return (
     <div className="w-full lg:w-[50%] bg-gray-100  mx-auto my-16 rounded-3xl p-8 ">
         <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">Join As Employment</h2>
-        <form className="space-y-5">
+        <form className="space-y-5 mb-2">
 
             
 <div>
@@ -45,10 +47,17 @@ const RegisterEmployee = () => {
            
           />
 </div>
-
+<input 
+  type="submit" 
+  value="Register" 
+  className="btn w-full  btn-primary" 
+/>
 
         </form>
 
+        <span className='font-bold text-black text-center text-md w-full'><Link to="/auth/register-hr" >Register as HR</Link></span>
+
+    
     </div>
   );
 };

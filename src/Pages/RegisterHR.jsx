@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const RegisterHR = () => {
   return (
@@ -66,6 +67,14 @@ const RegisterHR = () => {
 
 
         </form>
+        <p className=' mt-4 font-bold text-blue-600 text-center text-lg w-full'><Link to="/auth/register-employee" >Register as Employee</Link></p>
+
+         <p className="text-center mt-2 text-gray-600">
+        Already have an account?{" "}
+        <Link to="/auth/login"  className="text-blue-600 font-semibold hover:underline">
+          Login
+        </Link>
+      </p>
 
     </div>
   );

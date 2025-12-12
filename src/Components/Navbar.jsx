@@ -32,7 +32,7 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end flex gap-2 lg:mx-4 ">
-    <Link to="/auth" className="btn btn-accent font-bold">Join</Link>
+    <Link to="/auth" className="btn btn-accent font-bold text-xl">Join</Link>
 
   </div>
 </div>
