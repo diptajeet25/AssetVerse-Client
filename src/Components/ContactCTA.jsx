@@ -16,14 +16,14 @@ const ContactCTA = () => {
 
         <div className="mt-8 flex flex-wrap gap-4 justify-center">
           <a
-            href="/register-hr"
+            href="/auth"
             className="px-8 py-3 bg-white text-emerald-700 font-semibold rounded-xl shadow hover:bg-emerald-50 transition"
           >
             Get Started Now
           </a>
 
           <a
-            href="/contact"
+            href="#"
             className="px-8 py-3 border border-white text-white font-semibold rounded-xl hover:bg-white/20 transition"
           >
             Contact Us

@@ -64,7 +64,6 @@ const FAQSection = () => {
                   {item.question}
                 </span>
 
-                {/* Arrow icon */}
                 <svg
                   className={`w-5 h-5 text-slate-600 transition-transform ${
                     openIndex === i ? "rotate-180" : ""
@@ -78,7 +77,6 @@ const FAQSection = () => {
                 </svg>
               </button>
 
-              {/* Answer */}
               {openIndex === i && (
                 <div className="px-5 pb-5 text-slate-600 text-sm leading-relaxed">
                   {item.answer}
