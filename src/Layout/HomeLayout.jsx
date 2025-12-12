@@ -8,6 +8,7 @@ import FAQSection from '../Components/FAQSection';
 import ContactCTA from '../Components/ContactCTA';
 import Footer from '../Components/Footer';
 import Package from '../Components/Package';
+import Navbar from '../Components/Navbar';
 
 const HomeLayout = () => {
   const packagePromise=fetch("/packages.json")
@@ -15,6 +16,7 @@ const HomeLayout = () => {
     <title>Home-AssetVerse</title>
   return (
     <div>
+      <Navbar></Navbar>
         <Hero></Hero>
         <AboutSection></AboutSection>
         <Package packagePromise={packagePromise}></Package>

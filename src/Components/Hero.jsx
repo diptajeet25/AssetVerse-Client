@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
-    <div className="bg-slate-100 px-6 py-16 w-full md:w-[90%] lg:w-[80%] mx-auto my-8">
+    <div className="bg-slate-100 px-6 py-16 w-full md:w-[90%] lg:w-[80%] mx-auto my-8 mt-16">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
 
     
@@ -23,14 +23,14 @@ const Hero = () => {
 
           <div className="mt-6 flex gap-4">
             <a
-              href="/register-hr"
+              href="/auth/register-hr"
               className="px-6 py-3 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition"
             >
               Get Started
             </a>
 
             <a
-              href="/login"
+              href="/auth/login"
               className="px-6 py-3 border border-slate-300 text-slate-700 rounded-lg font-medium hover:bg-slate-100 transition"
             >
               Login
