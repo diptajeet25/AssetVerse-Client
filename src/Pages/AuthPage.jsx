@@ -17,7 +17,7 @@ const AuthPage = () => {
   </p>
 </div>
         <Link to="/auth/register-hr" className='btn btn-accent py-8 text-2xl  lg:text-3xl  font-bold w-80 lg:w-125 rounded-2xl'><BriefcaseBusiness /> Join As an HR</Link>
-        <Link to="auth/register-employee" className='btn btn-primary py-8 text-2xl  lg:text-3xl  font-bold w-80 lg:w-125 rounded-2xl'><User /> Join As An Employee</Link>
+        <Link to="/auth/register-employee" className='btn btn-primary py-8 text-2xl  lg:text-3xl  font-bold w-80 lg:w-125 rounded-2xl'><User /> Join As An Employee</Link>
         <Link to="/auth/login" className='btn btn-warning text-2xl py-8  lg:text-3xl text-black  font-bold w-80 lg:w-125 rounded-2xl'><LogIn /> Log In</Link>
     </div>
   );
