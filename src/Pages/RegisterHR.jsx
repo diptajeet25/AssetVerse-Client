@@ -1,14 +1,46 @@
-import React from 'react';
+import React, { use } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router';
+import { AuthContext } from '../Contexts/AuthContext';
+import useAxiosSecure from '../Hooks/useAxiosSecure';
 
 const RegisterHR = () => {
-
+const {createUser}=use(AuthContext)
+const axiosSecure=useAxiosSecure();
     const {register,handleSubmit,formState:{ errors } }=useForm();
 
     const handleRegisterHR=(data)=>
     {
       console.log(data);
+      const email=data.email
+    const password=data.password
+    createUser(email,password)
+    .then(()=>
+    {
+      const userInfo={
+        name:data.name,
+        profileImage:data.profileImage,
+        companyName:data.companyName,
+        companyLogo:data.companyLogo,
+        email:email,
+        role:"HR",
+        dateOfBirth:data.dateOfBirth,
+        packageLimit:5,
+        currentEmployees:0,
+        subscription:"Basic"
+
+
+      }
+      axiosSecure.post('/users',userInfo)
+      .then((result)=>
+      {
+
+        console.log(result);
+        alert("EMPLoyee Resister SUcceessfully")
+      })
+
+    })
+
     }
   
   return (
@@ -27,6 +59,17 @@ const RegisterHR = () => {
            
           />
             {errors.name?.type==="required" && <p className='text-red-600'>Name is required</p>}
+          
+</div>
+<div>
+     <label className="font-semibold text-black">Profile Image</label>
+          <input type="url" 
+          {...register("profileImage",{required:true})}
+          placeholder='Enter Your Profile Image URL'
+          
+          className="input input-bordered w-full" />
+           {errors.profileImage?.type==="required" && <p className='text-red-600'>Profile image's URL is required</p>}
+
           
 </div>
 
