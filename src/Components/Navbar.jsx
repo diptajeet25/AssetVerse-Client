@@ -3,7 +3,7 @@ import logo from "../assets/logo.png"
 import { Link } from 'react-router';
 const Navbar = () => {
 
-    const link=<div className='flex flex-col lg:flex-row gap-2 lg:gap-6 font-bold text-lg'>
+    const link=<div className='flex flex-col lg:flex-row gap-2 lg:gap-6 font-bold text-lg '>
 
     <Link to="/">Home</Link>
         <Link>Parent</Link>
@@ -31,7 +31,7 @@ const Navbar = () => {
       {link}
     </ul>
   </div>
-  <div className="navbar-end flex gap-2">
+  <div className="navbar-end flex gap-2 lg:mx-4 ">
     <Link to="/auth" className="btn btn-accent font-bold">Join</Link>
 
   </div>
