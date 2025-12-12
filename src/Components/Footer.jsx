@@ -1,3 +1,4 @@
+import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
 import React from "react";
 
 const Footer = () => {
@@ -33,10 +34,10 @@ const Footer = () => {
         <div>
           <h3 className="text-white text-lg font-semibold mb-3">Follow Us</h3>
           <div className="flex gap-4">
-            <a href="#" className="hover:text-white text-xl">🌐</a>
-            <a href="#" className="hover:text-white text-xl">🐦</a>
-            <a href="#" className="hover:text-white text-xl">📘</a>
-            <a href="#" className="hover:text-white text-xl">📸</a>
+            <a href="#" className="hover:text-white text-xl"><Facebook /></a>
+            <a href="#" className="hover:text-white text-xl"><Twitter /></a>
+            <a href="#" className="hover:text-white text-xl"><Instagram /></a>
+            <a href="#" className="hover:text-white text-xl"><Linkedin /></a>
           </div>
         </div>
       </div>
