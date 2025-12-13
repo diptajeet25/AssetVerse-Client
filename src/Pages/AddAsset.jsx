@@ -1,0 +1,167 @@
+import React, { use, useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { AuthContext } from '../Contexts/AuthContext';
+import useAxiosSecure from '../Hooks/useAxiosSecure';
+
+const AddAsset = () => {
+    const {user}=use(AuthContext)
+    const axiosSecure=useAxiosSecure();
+    const[userInfo,setUserInfo]=useState({});
+    
+
+    useEffect(()=>
+    {
+        axiosSecure.get(`user?email=${user.email}`)
+        .then((res)=>
+        {
+            setUserInfo(res.data)
+
+        })
+
+
+    },[user,axiosSecure])
+   
+
+
+       const {register,handleSubmit,setValue,formState:{ errors } }=useForm();
+
+  useEffect(() => {
+
+        if (userInfo) {
+    setValue("hrEmail", userInfo.email);
+    setValue("companyName", userInfo.companyName);
+  }
+}, [userInfo, setValue]);
+
+const handleAddAsset=(data)=>
+{
+    console.log(data);
+    data.availableQuantity=data.quantity
+    data.dateAdded=new Date();
+    axiosSecure.post('/asset',data)
+    .then((res)=>
+    {
+        if(res.data.insertedId)
+        {
+            alert("Assest Successfully Added")
+        }
+    })
+
+
+}
+
+
+  return (
+   <div className="w-full lg:w-[50%] bg-gray-100  mx-auto my-16 rounded-3xl p-8 ">
+        <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">Add Asset</h2>
+        <form onSubmit={handleSubmit(handleAddAsset)}  className="space-y-5 mb-2">
+            <div>
+     <label className="font-semibold text-black">Product Name</label>
+          <input
+            type="text"
+            {...register("productname",{required:true})}
+            placeholder="Enter Product name"
+            className="input input-bordered w-full"
+          />
+           {errors.productname?.type==="required" && <p className='text-red-600'>Name is required</p>}
+</div>
+          <div>
+     <label className="font-semibold text-black">Product Image</label>
+          <input
+            type="url"
+            {...register("productImage",{required:true})}
+            placeholder="Enter Product Image"
+            className="input input-bordered w-full"
+          />
+           {errors.productImage?.type==="required" && <p className='text-red-600'>Image Link is required</p>}
+</div>
+<div>
+  <label className="font-semibold text-black">Product Type</label>
+
+  <select
+    {...register("productType", { required: true })}
+    className="select select-bordered w-full"
+    defaultValue=""
+  >
+    <option value="" disabled>
+      Select product type
+    </option>
+    <option value="returnable">Returnable</option>
+    <option value="non-returnable">Non-Returnable</option>
+  </select>
+
+  {errors.productType?.type === "required" && (
+    <p className="text-red-600">Product type is required</p>
+  )}
+</div>
+<div>
+  <label className="font-semibold text-black">Product Quantity</label>
+
+  <input
+    type="number"
+    {...register("quantity", {
+      required: true,
+      min: 1
+    })}
+    placeholder="Enter quantity"
+    className="input input-bordered w-full"
+  />
+
+  {errors.quantity?.type === "required" && (
+    <p className="text-red-600">Quantity is required</p>
+  )}
+
+  {errors.quantity?.type === "min" && (
+    <p className="text-red-600">Quantity must be at least 1</p>
+  )}
+</div>
+<div>
+  <label className="font-semibold text-black">HR Email</label>
+
+  <input
+    type="email"
+    {...register("hrEmail", {
+      required: true,
+    })}
+    placeholder="Enter HR Email"
+    className="input input-bordered w-full"
+    defaultValue={userInfo.email}
+    readOnly
+  />
+
+  {errors.hrEmail?.type === "required" && (
+    <p className="text-red-600">HR Value is required</p>
+  )}
+
+</div>
+
+<div>
+  <label className="font-semibold text-black">HR Email</label>
+
+  <input
+    type="text"
+    {...register("companyName", {
+      required: true,
+    })}
+    placeholder="Enter Company Name"
+    className="input input-bordered w-full"
+    defaultValue={userInfo.companyName}
+    readOnly
+  />
+
+  {errors.companyName?.type === "required" && (
+    <p className="text-red-600">Company Name is required</p>
+  )}
+
+</div>
+<button type="submit" className="btn btn-primary text-black  w-full text-lg mt-4">
+       Add Asset
+        </button>
+        </form>
+            
+    </div>
+
+  );
+};
+
+export default AddAsset;

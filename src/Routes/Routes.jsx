@@ -5,6 +5,9 @@ import AuthPage from "../Pages/AuthPage";
 import RegisterHR from "../Pages/RegisterHR";
 import RegisterEmployee from "../Pages/RegisterEmployee";
 import Login from "../Pages/Login";
+import DashBoardLayout from "../Layout/DashBoardLayout";
+import AddAsset from "../Pages/AddAsset";
+import AssetList from "../Pages/AssetList";
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +35,21 @@ export const router = createBrowserRouter([
         element:<Login></Login>
       }
     ]
+  },
+  {
+    path:"/dashboard",
+    element:<DashBoardLayout></DashBoardLayout>,
+    children:[
+      {
+        index:true,
+        element:<AssetList></AssetList>
+      },
+      {
+        path:"add-asset",
+        element:<AddAsset></AddAsset>
+      }
+    ]
+
   }
 
 ]);

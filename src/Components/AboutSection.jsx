@@ -34,7 +34,7 @@ const AboutSection = () => {
     <section className="bg-white py-20 px-6">
       <div className="max-w-7xl mx-auto">
 
-        {/* HEADER */}
+       
         <div className="text-center mb-14">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
             Why Choose AssetVerse?
@@ -45,7 +45,7 @@ const AboutSection = () => {
           </p>
         </div>
 
-        {/* BENEFIT CARDS */}
+    
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {benefits.map((item, idx) => (
             <div

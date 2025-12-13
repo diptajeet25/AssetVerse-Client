@@ -34,7 +34,6 @@ const axiosSecure=useAxiosSecure();
       axiosSecure.post('/users',userInfo)
       .then((result)=>
       {
-
         console.log(result);
         alert("EMPLoyee Resister SUcceessfully")
       })
