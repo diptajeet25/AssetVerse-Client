@@ -9,6 +9,10 @@ import DashBoardLayout from "../Layout/DashBoardLayout";
 import AddAsset from "../Pages/AddAsset";
 import AssetList from "../Pages/AssetList";
 import ProfilePage from "../Pages/ProfilePage";
+import PrivateRoute from "./PrivateRoute";
+import DashBoardFront from "../Pages/DashBoardFront";
+import RequestAsset from "../Pages/RequestAsset";
+
 
 export const router = createBrowserRouter([
   {
@@ -39,11 +43,11 @@ export const router = createBrowserRouter([
   },
   {
     path:"/dashboard",
-    element:<DashBoardLayout></DashBoardLayout>,
+    element:<PrivateRoute><DashBoardLayout></DashBoardLayout></PrivateRoute>,
     children:[
       {
         index:true,
-        element:<AssetList></AssetList>
+        element:<DashBoardFront></DashBoardFront>
       },
       {
         path:"add-asset",
@@ -52,6 +56,10 @@ export const router = createBrowserRouter([
       {
         path:"profile",
         element:<ProfilePage></ProfilePage>
+      },
+      {
+        path:"request-asset",
+        element:<RequestAsset></RequestAsset>
       }
     ]
 

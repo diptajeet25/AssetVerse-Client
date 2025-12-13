@@ -1,0 +1,27 @@
+import React, { use } from 'react';
+import useRole from '../Hooks/useRole';
+import { AuthContext } from '../Contexts/AuthContext';
+import AssetList from './AssetList';
+import MyAsset from './MyAsset';
+
+const DashBoardFront = () => {
+    const role=useRole();
+    const {loading}=use(AuthContext);
+    if(loading)
+        return (
+      <div className="flex items-center justify-center h-screen bg-white">
+      <div className="flex flex-col items-center gap-4">
+        <span className="loading loading-ring loading-lg text-blue-600"></span>
+        <p className="text-lg font-semibold text-gray-600 animate-pulse">
+          Please wait...
+        </p>
+      </div>
+    </div>
+    );
+    if(role.role==="HR")
+        return <AssetList></AssetList>
+ else if(role.role==="employee")
+    return <MyAsset></MyAsset>
+};
+
+export default DashBoardFront;

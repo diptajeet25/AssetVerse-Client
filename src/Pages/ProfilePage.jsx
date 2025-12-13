@@ -94,7 +94,7 @@ const ProfilePage = () => {
               Go to HR Dashboard
             </Link>
           ) : (
-            <Link to="/dashboard" className=" bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-xl font-semibold transition">
+            <Link to="/dashboard" className="w-full btn bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-xl font-semibold transition">
              GO to Employee Dashboard
             </Link>
           )}
@@ -107,10 +107,10 @@ const ProfilePage = () => {
   <dialog id="my_modal_4" ref={modalref} className="modal">
   <div className="modal-box w-11/12 max-w-5xl bg-white">
    
-<h3 className="font-bold text-2xl text-center">Edit Your Information!</h3>
+<h3 className="font-bold text-2xl text-center text-black">Edit Your Information!</h3>
      <form onSubmit={handleSubmit(handleUpdateProfile)}  className="space-y-5 mb-2">
             <div>
-     <label className="font-semibold text-black">Product Name</label>
+     <label className="font-semibold text-black">Your Name</label>
           <input
             type="text"
             {...register("name",{required:true})}
@@ -132,7 +132,7 @@ const ProfilePage = () => {
            {errors.profileImage?.type==="required" && <p className='text-red-600'>Image Link is required</p>}
 </div>
 <div>
-  <label className="font-semibold text-black">HR Email</label>
+  <label className="font-semibold text-black">Date of Birth</label>
 
   <input
     type="date"

@@ -104,7 +104,7 @@ const DashBoardLayout = () => {
         </li>
 
         <li>
-          <Link to="/dashboard/add-asset" className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-xl" data-tip="Request an Asset">
+          <Link to="/dashboard/request-asset" className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-xl" data-tip="Request an Asset">
 
          <PackagePlus />
             <span className="is-drawer-close:hidden">Request an Asset</span>
