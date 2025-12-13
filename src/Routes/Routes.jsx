@@ -8,6 +8,7 @@ import Login from "../Pages/Login";
 import DashBoardLayout from "../Layout/DashBoardLayout";
 import AddAsset from "../Pages/AddAsset";
 import AssetList from "../Pages/AssetList";
+import ProfilePage from "../Pages/ProfilePage";
 
 export const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
       {
         path:"add-asset",
         element:<AddAsset></AddAsset>
+      },
+      {
+        path:"profile",
+        element:<ProfilePage></ProfilePage>
       }
     ]
 

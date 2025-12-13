@@ -16,6 +16,7 @@ import { CgProfile } from "react-icons/cg";
 const DashBoardLayout = () => {
   const role=useRole();
   console.log(role);
+
   return (
     <div className="drawer lg:drawer-open">
   <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -25,7 +26,7 @@ const DashBoardLayout = () => {
       <label htmlFor="my-drawer-4" aria-label="open sidebar" className="btn btn-square btn-ghost">
        <GoSidebarCollapse />
       </label>
-      <div className="px-4">DashBoard</div>
+      <div className="px-4">{role?.role} DashBoard</div>
     </nav>
   
     <div className="p-4">
@@ -48,7 +49,7 @@ const DashBoardLayout = () => {
           role.role==="HR" ? <>
 
           <li>
-          <Link to="/" className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-xl" data-tip="Asset-List">
+          <Link to="/dashboard" className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-xl" data-tip="Asset-List">
 
           <FaRectangleList />
             <span className="is-drawer-close:hidden">Asset List</span>
@@ -122,7 +123,7 @@ const DashBoardLayout = () => {
 
         }
            <li>
-          <Link to="/" className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-xl" data-tip="My Profile">
+          <Link to="/dashboard/profile" className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-xl" data-tip="My Profile">
 
         <CgProfile />
             <span className="is-drawer-close:hidden">My Profile</span>

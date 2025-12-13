@@ -130,13 +130,13 @@ const handleAddAsset=(data)=>
   />
 
   {errors.hrEmail?.type === "required" && (
-    <p className="text-red-600">HR Value is required</p>
+    <p className="text-red-600">HR Email required</p>
   )}
 
 </div>
 
 <div>
-  <label className="font-semibold text-black">HR Email</label>
+  <label className="font-semibold text-black">Company Name</label>
 
   <input
     type="text"
