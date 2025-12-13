@@ -63,13 +63,7 @@ const DashBoardLayout = () => {
             <span className="is-drawer-close:hidden">Add Asset</span>
           </Link>
         </li>
-        <li>
-          <Link to="/" className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-xl" data-tip="Employee Request">
-
-         <RiPassPendingFill />
-            <span className="is-drawer-close:hidden">Employee Request</span>
-          </Link>
-        </li>
+     
          <li>
           <Link to="/" className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-xl" data-tip="Asset Request">
 

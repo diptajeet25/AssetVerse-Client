@@ -48,8 +48,8 @@ const RequestAsset = () => {
             assetId:assets._id,
             assetName:assets.productname,
             assetType:assets.productType,
-            requesterName:userInfo.name,
-            requesterEmail:userInfo.email,
+            requesterName:userInfo?.name,
+            requesterEmail:userInfo?.email,
             hrEmail:assets.hrEmail,
             companyName:assets.companyName,
             requestDate:new Date(),
@@ -83,9 +83,9 @@ const RequestAsset = () => {
     </div>
   )}
   {
-    asset.map((a)=>
+    asset .filter(a => a.availableQuantity > 0).map((a)=>
       <div key={a._id} className="border p-4 rounded-lg shadow-lg bg-white">
-        <img src={a.productImage} alt={a.productname} className='w-full lg:w-[80%] h-72 mx-auto rounded-2xl my-4' />
+        <img src={a.productImage} alt={a.productname} className='w-[80%] lg:w-[60%] h-60 mx-auto rounded-2xl my-4' />
         <h3 className="text-2xl font-bold mb-2 text-black">{a.productname}</h3>
         <p className="text-gray-700 mb-1"><span className="font-semibold text-black">Type:</span> {a.productType}</p>
         <p className="text-gray-700 mb-1"><span className="font-semibold text-black">Quantity:</span> {a.quantity}</p>

@@ -12,6 +12,8 @@ import ProfilePage from "../Pages/ProfilePage";
 import PrivateRoute from "./PrivateRoute";
 import DashBoardFront from "../Pages/DashBoardFront";
 import RequestAsset from "../Pages/RequestAsset";
+import AdminRoute from "./AdminRoute";
+import EmployeeRoute from "./EmployeeRoute";
 
 
 export const router = createBrowserRouter([
@@ -51,7 +53,7 @@ export const router = createBrowserRouter([
       },
       {
         path:"add-asset",
-        element:<AddAsset></AddAsset>
+        element: <AdminRoute><AddAsset></AddAsset></AdminRoute>
       },
       {
         path:"profile",
@@ -59,7 +61,7 @@ export const router = createBrowserRouter([
       },
       {
         path:"request-asset",
-        element:<RequestAsset></RequestAsset>
+        element:<EmployeeRoute><RequestAsset></RequestAsset></EmployeeRoute>
       }
     ]
 
