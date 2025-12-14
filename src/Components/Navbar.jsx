@@ -8,7 +8,6 @@ const Navbar = () => {
   const {user,logoutUser}=use(AuthContext)
   const axiosSecure=useAxiosSecure();
   const[userInfo,setUserInfo]=useState();
-  console.log(user);
   const handleLogOut=()=>
     {
       logoutUser()
@@ -26,7 +25,7 @@ const Navbar = () => {
           axiosSecure.get(`/user?email=${user.email}`)
           .then((res)=>
           {
-            console.log(res.data);
+         
             setUserInfo(res.data)
             
 
@@ -61,10 +60,10 @@ const Navbar = () => {
     </div>
 
         const employeeLinks=<div className='bg-white flex flex-col'>
-    <Link className='btn bg-white text-black p-2 '> My Assets </Link>
+    <Link to="/dashboard/my-assets" className='btn bg-white text-black p-2 '> My Assets </Link>
     <Link className='btn bg-white text-black p-2'>My Team</Link>
-    <Link className='btn bg-white text-black p-2'>Request Asset</Link>
-    <Link className='btn bg-white text-black p-2'> My Profile</Link>
+    <Link to="/dashboard/request-asset" className='btn bg-white text-black p-2'>Request Asset</Link>
+    <Link to="/dashboard/profile" className='btn bg-white text-black p-2'> My Profile</Link>
     <button onClick={handleLogOut} className='btn bg-white text-black p-2'>Log Out</button>
     </div>
   return (

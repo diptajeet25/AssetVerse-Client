@@ -15,7 +15,7 @@ import { CgProfile } from "react-icons/cg";
 
 const DashBoardLayout = () => {
   const role=useRole();
-  console.log(role);
+
 
   return (
     <div className="drawer lg:drawer-open">
@@ -65,7 +65,7 @@ const DashBoardLayout = () => {
         </li>
      
          <li>
-          <Link to="/" className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-xl" data-tip="Asset Request">
+          <Link to="/dashboard/request-asset-list" className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-xl" data-tip="Asset Request">
 
          <LuPackageSearch />
             <span className="is-drawer-close:hidden">Asset Request</span>
@@ -73,7 +73,7 @@ const DashBoardLayout = () => {
         </li>
      
         <li>
-          <Link to="/" className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-xl" data-tip="My-Employee">
+          <Link to="/dashboard/my-employees" className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-xl" data-tip="My-Employee">
 
          <FaUser />
             <span className="is-drawer-close:hidden">My Employee</span>
@@ -90,7 +90,7 @@ const DashBoardLayout = () => {
           </>: <>
 
           <li>
-          <Link to="/" className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-xl" data-tip="My Asset">
+          <Link to="/dashboard/my-assets" className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-xl" data-tip="My Asset">
 
           <SiMyget />
             <span className="is-drawer-close:hidden">My Asset</span>

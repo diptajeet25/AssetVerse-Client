@@ -7,14 +7,14 @@ import { Link } from "react-router";
 
 const ProfilePage = () => {
 
-    const {user}=use(AuthContext)
+    const {user,loading}=use(AuthContext)
     const modalref=useRef();
     const axiosSecure=useAxiosSecure();
         const { register, handleSubmit,setValue, formState: { errors }} =useForm();
      
     
    
-    const { data: profile=[],refetch}=useQuery({
+    const { data: profile=[],refetch,isLoading}=useQuery({
     queryKey: ['assets',user?.email],
     queryFn: async()=>
     {
@@ -49,12 +49,23 @@ const ProfilePage = () => {
   });
 }
 
+if(loading || isLoading)
+  return (
+    <div className="flex items-center justify-center h-screen bg-white">
+      <div className="flex flex-col items-center gap-4">
+        <span className="loading loading-ring loading-lg text-blue-600"></span>
+        <p className="text-lg font-semibold text-gray-600 animate-pulse">
+          Please wait...
+        </p>
+      </div>
+    </div>);
+
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
       <div className="bg-white w-full max-w-md rounded-2xl shadow-xl overflow-hidden">
         
     
-        <div className="bg-gradient-to-r from-indigo-500 to-purple-600 p-6 flex flex-col items-center">
+        <div className="bg-linear-to-r from-indigo-500 to-purple-600 p-6 flex flex-col items-center">
           <img
             src={profile.profileImage}
             alt="Profile"

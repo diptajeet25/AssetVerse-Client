@@ -7,13 +7,15 @@ import RegisterEmployee from "../Pages/RegisterEmployee";
 import Login from "../Pages/Login";
 import DashBoardLayout from "../Layout/DashBoardLayout";
 import AddAsset from "../Pages/AddAsset";
-import AssetList from "../Pages/AssetList";
 import ProfilePage from "../Pages/ProfilePage";
 import PrivateRoute from "./PrivateRoute";
 import DashBoardFront from "../Pages/DashBoardFront";
 import RequestAsset from "../Pages/RequestAsset";
 import AdminRoute from "./AdminRoute";
 import EmployeeRoute from "./EmployeeRoute";
+import AssetRequest from "../Pages/AssetRequest";
+import MyEmployees from "../Pages/MyEmployees";
+import MyAsset from "../Pages/MyAsset";
 
 
 export const router = createBrowserRouter([
@@ -56,12 +58,25 @@ export const router = createBrowserRouter([
         element: <AdminRoute><AddAsset></AddAsset></AdminRoute>
       },
       {
+        path:"request-asset-list",
+        element:<AdminRoute><AssetRequest></AssetRequest></AdminRoute>
+
+      },
+      {
         path:"profile",
         element:<ProfilePage></ProfilePage>
       },
       {
         path:"request-asset",
         element:<EmployeeRoute><RequestAsset></RequestAsset></EmployeeRoute>
+      },
+      {
+        path:"my-employees",
+        element:<AdminRoute><MyEmployees></MyEmployees></AdminRoute>
+      },
+      {
+        path:"my-assets",
+        element:<EmployeeRoute><MyAsset></MyAsset></EmployeeRoute>
       }
     ]
 

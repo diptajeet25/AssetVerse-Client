@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 
 const AssetList = () => {
-    const {user}=use(AuthContext);
+    const {user,loading}=use(AuthContext);
    
 
     const axiosSecure=useAxiosSecure();
@@ -99,6 +99,17 @@ const handleEdit = (data) => {
   }
 });
   }
+
+  if(loading)
+  return (
+    <div className="flex items-center justify-center h-screen bg-white">
+      <div className="flex flex-col items-center gap-4">
+        <span className="loading loading-ring loading-lg text-blue-600"></span>
+        <p className="text-lg font-semibold text-gray-600 animate-pulse">
+          Please wait...
+        </p>
+      </div>
+    </div>);
 
 
  
