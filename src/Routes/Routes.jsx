@@ -16,6 +16,7 @@ import EmployeeRoute from "./EmployeeRoute";
 import AssetRequest from "../Pages/AssetRequest";
 import MyEmployees from "../Pages/MyEmployees";
 import MyAsset from "../Pages/MyAsset";
+import MyTeam from "../Pages/MyTeam";
 
 
 export const router = createBrowserRouter([
@@ -77,6 +78,10 @@ export const router = createBrowserRouter([
       {
         path:"my-assets",
         element:<EmployeeRoute><MyAsset></MyAsset></EmployeeRoute>
+      },
+      {
+        path:"my-team",
+        element:<EmployeeRoute><MyTeam></MyTeam></EmployeeRoute>
       }
     ]
 

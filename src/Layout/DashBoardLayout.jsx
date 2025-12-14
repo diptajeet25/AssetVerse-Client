@@ -105,7 +105,7 @@ const DashBoardLayout = () => {
           </Link>
         </li>
         <li>
-          <Link to="/" className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-xl" data-tip="MY TEAM">
+          <Link to="/dashboard/my-team" className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-xl" data-tip="MY TEAM">
 
          <RiTeamFill />
             <span className="is-drawer-close:hidden">MY TEAM</span>
