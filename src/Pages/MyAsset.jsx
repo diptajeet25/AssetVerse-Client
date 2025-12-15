@@ -14,8 +14,16 @@ const MyAsset = () => {
       enabled:!!user?.email && !loading,
       queryFn:async()=>{
         const res=await axiosSecure.get(`/myassets?employeeEmail=${user.email}`);
+        if( Array.isArray(res.data))
+        {
         setMyAssets(res.data);
-        return res.data;
+        return  res.data;
+        }
+        else
+        {
+          setMyAssets([]);
+          return [];
+        }
 
     }
   })
