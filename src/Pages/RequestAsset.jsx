@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React, { use, useRef, useState } from 'react';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
 import { AuthContext } from '../Contexts/AuthContext';
+import { toast } from 'react-toastify';
 
 const RequestAsset = () => {
     const axiosSecure=useAxiosSecure();
@@ -61,7 +62,7 @@ const RequestAsset = () => {
         {
             if(res.data.insertedId)
             {
-                alert("Asset Request Submitted Successfully")
+               toast.success("Asset Request Submitted Successfully");
                 modalref.current.close();
                 refetch();
             }

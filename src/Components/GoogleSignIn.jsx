@@ -3,6 +3,7 @@ import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from '../Contexts/AuthContext';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
 import { useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
 
 const GoogleSignIn = () => {
     const {googleSignIn}=use(AuthContext)
@@ -26,7 +27,7 @@ axiosSecure.post("/users",userInfo)
 .then((result)=>
 {
     console.log(result)
-    alert("SIgn In with google")
+    toast.success("Login Successful");
     navigate("/")
 
 })

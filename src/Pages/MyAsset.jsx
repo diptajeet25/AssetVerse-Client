@@ -2,31 +2,33 @@ import React, { use, useState } from 'react';
 import { AuthContext } from '../Contexts/AuthContext';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
 
 const MyAsset = () => {
   const {user,loading}=use(AuthContext);
   const axiosSecure=useAxiosSecure();
   const [myassets,setMyAssets]=useState([])
+  const [page, setPage] = useState(1);
+const [totalPages, setTotalPages] = useState(1);
+const limit = 10;
 
-  const{ data,refetch,isLoading}=useQuery(
-    {
-      queryKey:['my-assets',user?.email],
-      enabled:!!user?.email && !loading,
-      queryFn:async()=>{
-        const res=await axiosSecure.get(`/myassets?employeeEmail=${user.email}`);
-        if( Array.isArray(res.data))
-        {
-        setMyAssets(res.data);
-        return  res.data;
-        }
-        else
-        {
-          setMyAssets([]);
-          return [];
-        }
 
-    }
-  })
+ const { data, refetch, isLoading } = useQuery({
+  queryKey: ['my-assets', user?.email, page],
+  enabled: !!user?.email && !loading,
+  queryFn: async () => {
+    const res = await axiosSecure.get(
+      `/myassets?employeeEmail=${user.email}&page=${page}&limit=${limit}`
+    );
+    setMyAssets(res.data.assets || []);
+    setTotalPages(res.data.totalPages || 1);
+
+    return res.data;
+  }
+});
+
+
+
 const handleReturn=(asset)=>
 {
   axiosSecure.patch(`/return-asset/${asset._id}`,asset)
@@ -35,7 +37,7 @@ const handleReturn=(asset)=>
     console.log(res.data);
     if(res.data.assignedAssetUpdate.modifiedCount>0 && res.data.assetUpdate.modifiedCount>0)
     {
-      alert("Asset Returned Successfully");
+     toast.success("Asset Returned Successfully");
       refetch();
 
     }
@@ -59,7 +61,7 @@ const handleReturn=(asset)=>
 
   return (
     <div>
-      <h2 className="text-3xl font-bold text-center mb-6 text-black  "> MyAsset:{myassets.length} </h2>
+      <h2 className="text-3xl font-bold text-center mb-6 text-black  "> My Assets </h2>
       <div className="overflow-x-auto">
       <table className="table  w-full text-black text-xl mx-8 mt-8">
         <thead className='text-black text-2xl'>
@@ -68,6 +70,7 @@ const handleReturn=(asset)=>
             <th>Product Name</th>
             <th>Product Type</th>
             <th>Company Name</th>
+            <th>Employee Email</th>
             <th>Assignment Date</th>
             <th>Status</th>
             <th>Action</th>
@@ -91,6 +94,7 @@ const handleReturn=(asset)=>
               </td>
               <td>{asset.assetType}</td>
               <td>{asset.companyName}</td>
+              <td>{asset.employeeEmail}</td>
               <td>{new Date(asset.assignmentDate).toLocaleDateString()}</td>
               <td>{asset.status}</td>
               <td>
@@ -109,6 +113,25 @@ const handleReturn=(asset)=>
         </tbody>
       </table>
       </div>
+
+<div className="flex justify-center items-center gap-2 mt-6">
+
+ 
+  {page>1 && <button className="btn btn-outline text-black" disabled={page === 1}  onClick={() => setPage(page - 1)}>Prev</button>
+}
+ {
+    [...Array(totalPages).keys()].map(num => (
+      <button key={num} className={`btn text-black ${page === num + 1 ? "btn-primary" : "btn-outline"}`}onClick={() => setPage(num + 1)}>{num + 1}</button>
+    ))
+  }
+  {page < totalPages &&
+  <button className="btn btn-outline text-black" disabled={page === totalPages} onClick={() => setPage(page + 1)}>Next</button>
+  }
+</div>
+
+
+
+
 
 
       

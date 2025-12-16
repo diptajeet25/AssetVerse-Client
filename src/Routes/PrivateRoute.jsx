@@ -1,6 +1,7 @@
 import React, { use } from 'react';
 import { AuthContext } from '../Contexts/AuthContext';
 import { Navigate, useLocation } from 'react-router';
+import { toast } from 'react-toastify';
 
 const PrivateRoute = ({children}) => {
     const location = useLocation();
@@ -23,7 +24,7 @@ const PrivateRoute = ({children}) => {
         return children;
     }
     else{
-        alert("You have to log in first to access this page.");
+      toast.warning("You must be logged in to access this page.");
         return <Navigate state={location.pathname}  to="/auth/login"></Navigate>
     }
 

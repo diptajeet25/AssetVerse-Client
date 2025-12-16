@@ -4,6 +4,7 @@ import useAxiosSecure from "../Hooks/useAxiosSecure";
 import { useQuery } from '@tanstack/react-query';
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
+import { toast } from "react-toastify";
 
 const ProfilePage = () => {
 
@@ -14,7 +15,7 @@ const ProfilePage = () => {
      
     
    
-    const { data: profile=[],refetch,isLoading}=useQuery({
+    const { data: profile={},refetch,isLoading}=useQuery({
     queryKey: ['assets',user?.email],
     queryFn: async()=>
     {
@@ -37,16 +38,24 @@ const ProfilePage = () => {
   {
     console.log(data);
     data.updatedAt=new Date();
+    console.log(profile._id);
+    
     axiosSecure.patch(`/user/${profile._id}`,data)
     .then((res)=>
     {
         if(res.data.modifiedCount>0)
         {
-            alert("Profile Updated Successfully")
+            toast.success("Profile Updated Successfully");
             modalref.current.close();
             refetch();
         }
-  });
+  })
+    .catch(()=>
+    {
+        toast.error("Failed to update profile. Please try again.");
+
+    })
+  ;
 }
 
 if(loading || isLoading)

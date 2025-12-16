@@ -2,6 +2,7 @@ import React, { use } from 'react';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
 import { AuthContext } from '../Contexts/AuthContext';
 import { useQuery } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
 
 const AssetRequest = () => {
 
@@ -21,26 +22,34 @@ const AssetRequest = () => {
         axiosSecure.patch(`/requests-approve/${req._id}`,req)
         .then((res)=>{
             console.log(res.data);
-        if (res.data?.requestUpdate?.modifiedCount > 0)
+        if (res.data?.requestUpdate?.modifiedCount > 0 && res.data?.assignedAsset.insertedId)
             {
                 refetch();
-                alert('Request Approved');
+               toast.success("Request Approved Successfully");
+            }
+            else
+            {
+              toast.error(`${res.data.message}`);
             }
         })
 
 
     }
 
+
     const handleReject=(req)=>
     {
         axiosSecure.patch(`/requests-reject/${req._id}`,req)
         .then((res)=>
         {
-            if(res.data?.requestUpdate?.modifiedCount>0)
+          console.log(res.data);
+             if(res.data.result?.modifiedCount>0)
             {
                 refetch();
                 console.log(res.data);
-                alert("Request Denied Successfully")
+
+              
+                toast.success("Request Rejected Successfully");
             }
         })
 

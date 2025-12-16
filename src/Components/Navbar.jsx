@@ -3,6 +3,7 @@ import logo from "../assets/logo.png"
 import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../Contexts/AuthContext';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
+import { toast } from 'react-toastify';
 const Navbar = () => {
   const navigate=useNavigate();
   const {user,logoutUser}=use(AuthContext)
@@ -13,7 +14,7 @@ const Navbar = () => {
       logoutUser()
       .then(()=>
       {
-        alert("Logged Out Successfully!!")
+       toast.success("Logged Out Successfully");
         navigate("/auth/login")
       })
     }  

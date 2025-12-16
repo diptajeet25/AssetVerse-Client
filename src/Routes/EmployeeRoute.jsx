@@ -3,6 +3,7 @@ import React, { use } from 'react';
 import { AuthContext } from '../Contexts/AuthContext';
 import useRole from '../Hooks/useRole';
 import { Navigate } from 'react-router';
+import { toast } from 'react-toastify';
 
 const EmployeeRoute = ({children}) => {
 
@@ -22,7 +23,7 @@ if(loading || isLoading)
   ))
   if(role!=="employee")
   {
-        alert("You are not authorized to access this page");
+       toast.error("Access denied. Employees only.");
         return <Navigate to="/"></Navigate>
   }
   return children;

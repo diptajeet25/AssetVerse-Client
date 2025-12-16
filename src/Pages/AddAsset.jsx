@@ -2,6 +2,7 @@ import React, { use, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../Contexts/AuthContext';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
+import { toast } from 'react-toastify';
 
 const AddAsset = () => {
     const {user,loading}=use(AuthContext)
@@ -29,23 +30,30 @@ const AddAsset = () => {
 
         if (userInfo) {
     setValue("hrEmail", userInfo.email);
-    setValue("companyName", userInfo.companyName);
+    console.log(userInfo)
+    setValue("companyName", userInfo?.companyName);
   }
 }, [userInfo, setValue]);
 
 const handleAddAsset=(data)=>
 {
-    console.log(data);
-    data.availableQuantity=data.quantity
+   
+     data.quantity = Number(data.quantity);
+  data.availableQuantity = Number(data.quantity);
     data.dateAdded=new Date();
     axiosSecure.post('/asset',data)
     .then((res)=>
     {
         if(res.data.insertedId)
         {
-            alert("Assest Successfully Added")
+            toast.success("Asset Successfully Added");
+
         }
     })
+    .catch(() => {
+
+      toast.error('Failed to add asset. Please try again.');
+    });
 
 
 }
@@ -156,7 +164,7 @@ if(loading)
     })}
     placeholder="Enter Company Name"
     className="input input-bordered w-full"
-    defaultValue={userInfo.companyName}
+    
     readOnly
   />
 

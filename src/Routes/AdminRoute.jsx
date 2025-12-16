@@ -3,6 +3,7 @@ import React, { use } from 'react';
 import { AuthContext } from '../Contexts/AuthContext';
 import useRole from '../Hooks/useRole';
 import { Navigate } from 'react-router';
+import { toast } from 'react-toastify';
 
 const AdminRoute = ({children}) => {
     const {role,isLoading}=useRole();
@@ -22,7 +23,7 @@ const AdminRoute = ({children}) => {
 
     if(role!=="HR")
     {
-        alert("You are not authorized to access this page");
+      toast.error("Access denied. Admins only.");
         return <Navigate to="/"></Navigate>
     }
     return children

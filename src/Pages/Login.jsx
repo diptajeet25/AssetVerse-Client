@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router';
 import { AuthContext } from '../Contexts/AuthContext';
 import GoogleSignIn from '../Components/GoogleSignIn';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const {register,handleSubmit,formState:{ errors } }=useForm();
@@ -15,11 +16,11 @@ const Login = () => {
     loginUser(email,password)
     .then(()=>
     {
-      alert("Login SuccessFUll")
+    toast.success("Login Successful");
     })
     .catch((e)=>
     {
-      alert(e.message)
+    toast.error(e.message);
     })
   }
   

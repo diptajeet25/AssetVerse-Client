@@ -4,6 +4,7 @@ import { AuthContext } from '../Contexts/AuthContext';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
+import { toast } from 'react-toastify';
 
 const AssetList = () => {
     const {user,loading}=use(AuthContext);
@@ -61,10 +62,15 @@ const handleEdit = (data) => {
     {
         if(res.data.modifiedCount>0)
         {
-            alert("Asset Updated Successfully")
+           toast.success("Asset Updated Successfully");
             modalref.current.close();
             refetch();
         }
+        else
+        {
+            toast.error("No changes were made.");
+        }
+
     })
 
   }

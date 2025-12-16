@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router';
 import { AuthContext } from '../Contexts/AuthContext';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
+import { toast } from 'react-toastify';
 
 const RegisterEmployee = () => {
   const {createUser}=use(AuthContext);
@@ -31,7 +32,7 @@ const RegisterEmployee = () => {
       {
 
         console.log(result);
-        alert("EMPLoyee Resister SUcceessfully")
+       toast.success("Employee Registered Successfully");
       })
 
     })

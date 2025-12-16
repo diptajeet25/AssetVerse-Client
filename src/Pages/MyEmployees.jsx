@@ -1,20 +1,28 @@
-import React, { use } from 'react';
+import React, { use, useRef, useState } from 'react';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
 import { AuthContext } from '../Contexts/AuthContext';
 import { useQuery } from '@tanstack/react-query';
+import { useQueryClient } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
+
+
 
 const MyEmployees = () => {
 
+  const queryClient = useQueryClient();
+
+
     const axiosSecure=useAxiosSecure();
+    const modalRef=useRef();
     const {user,loading}=use(AuthContext);
+    const [selectedEmployee,setSelectedEmployee]=useState(null);
     const {data:employees=[],refetch,isLoading}=useQuery(
         {
             queryKey:['my-employees',user?.email],
             enabled:!!user?.email && !loading,
             queryFn:async()=>{
               const res= await axiosSecure.get(`/employees?hrEmail=${user.email}`);
-                return res.data;
-
+              return Array.isArray(res.data) ? res.data : [];
             }
         }
         
@@ -24,16 +32,35 @@ const {data:assets=[]}=useQuery(
         queryKey:['my-assets'],
         queryFn:async()=>{
             const res=await axiosSecure.get(`assetscount?hrEmail=${user.email}`);
-            return res.data;
+
+            return Array.isArray(res.data) ? res.data : [];
         }
 
     }
 )
 
 
+const {data:availableAssets=[]}=useQuery(
+  {
+      queryKey:['my-assets-to-assign',user?.email],
+      enabled: !!user?.email,
+      queryFn:async()=>{
+        const res=await axiosSecure.get(`myassetsToassigninModal?hrEmail=${user.email}`);
+          return Array.isArray(res.data) ? res.data : [];
+      }
+  }
+)
+console.log(availableAssets);
+const handleModalOpen=(emp)=>
+{
+  setSelectedEmployee(emp);
+    modalRef.current.showModal();
+}
+
+
 const handleDelete=(emp)=>
 {
-    console.log(emp);
+  
 
     axiosSecure.patch("/deleteEmployee",emp)
     .then((res)=>
@@ -41,7 +68,7 @@ const handleDelete=(emp)=>
         console.log(res);
       if(res.data.employeeUpdate.modifiedCount>0 && res.data.userUpdate.modifiedCount>0)
         {
-            alert("Employee Deleted Successfully");
+           toast.success("Employee Deleted Successfully");
             refetch();
             
         }
@@ -49,9 +76,49 @@ const handleDelete=(emp)=>
     .catch((err)=>
     {
         console.log(err);
+        toast.error("Failed to delete employee. Please try again.");
 
     })
 
+}
+const handleFinalAssign=(asset)=>
+{
+    console.log(asset);
+    const assignInfo={
+      assetId:asset._id,
+      assetName:asset.productname,
+      assetImage:asset.productImage,
+      assetType:asset.productType,
+      employeeEmail:selectedEmployee.employeeEmail,
+      employeeName:selectedEmployee.employeeName,
+      hrEmail:user.email,
+      companyName:asset.companyName,
+     assignmentDate:new Date(),
+      status:"assigned"
+
+    }
+
+axiosSecure.post("/assignAssetByHR",assignInfo)
+.then((res)=>
+{
+    console.log(res.data);
+if(res.data.assignedAsset.insertedId  && res.data.updatedAsset.modifiedCount>0)
+{
+   toast.success("Asset Assigned Successfully");
+    console.log("here");
+    modalRef.current.close();
+    refetch();
+    queryClient.invalidateQueries(['my-assets']);     
+  queryClient.invalidateQueries(['my-assets-to-assign', user.email]);
+}
+})
+.catch((err)=>
+{
+    console.log(err);
+    toast.error("Failed to assign asset. Please try again.");
+
+})
+    
 }
 
     if(loading || isLoading)
@@ -97,12 +164,63 @@ const handleDelete=(emp)=>
                 <td>{emp.employeeEmail}</td>
                 <td>{new Date(emp.affiliationDate).toLocaleDateString()}</td>
                 <td>{assets.filter(a=>a.employeeEmail===emp.employeeEmail).length}</td>
-                <td><button className='btn btn-warning' onClick={()=>handleDelete(emp)}>Delete</button></td>
+                <td className='flex justify-center items-center gap-2'>
+                  <button className='btn btn-primary' onClick={()=>handleModalOpen(emp)}>Assign Asset</button>
+                  <button className='btn btn-warning' onClick={()=>handleDelete(emp)}>Delete</button></td>
             </tr>)
         }
     </tbody>
   </table>
 </div>
+
+<dialog ref={modalRef} className="modal modal-bottom sm:modal-middle">
+  <div className="modal-box bg-white text-black">
+    <h3 className="font-bold text-lg">Assign Asset</h3>
+    <div className="py-4">
+      <table className="table w-full text-black">
+        <thead>
+          <tr className='text-center text-black'>
+            <th>#</th>
+            <th>Asset Name</th>
+            <th>Asset Type</th>
+            <th>Available Quantity</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {availableAssets.length === 0 && (
+            <tr>
+              <td colSpan="4" className="text-center text-gray-500">
+                No available assets to assign
+              </td>
+            </tr>
+          )}
+
+          {availableAssets.map((asset, index) => (
+            <tr key={asset._id} className='text-center'>
+              <th>{index + 1}</th>
+              <td>{asset.productname}</td>
+              <td>{asset.productType}</td>
+              <td>{asset.availableQuantity}</td>
+              <td><button className="btn btn-primary" onClick={()=>handleFinalAssign(asset)}>Assign</button></td>
+            </tr>
+          ))}
+          
+          </tbody>
+      </table>
+      </div>
+    
+    <div className="modal-action">
+      <form method="dialog">
+        {/* if there is a button in form, it will close the modal */}
+        <button className="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+
+
      </div>
   );
 };
