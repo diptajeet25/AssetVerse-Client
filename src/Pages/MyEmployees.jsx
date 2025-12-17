@@ -50,7 +50,7 @@ const {data:availableAssets=[]}=useQuery(
       }
   }
 )
-console.log(availableAssets);
+
 const handleModalOpen=(emp)=>
 {
   setSelectedEmployee(emp);
@@ -65,7 +65,7 @@ const handleDelete=(emp)=>
     axiosSecure.patch("/deleteEmployee",emp)
     .then((res)=>
     {
-        console.log(res);
+       
       if(res.data.employeeUpdate.modifiedCount>0 && res.data.userUpdate.modifiedCount>0)
         {
            toast.success("Employee Deleted Successfully");

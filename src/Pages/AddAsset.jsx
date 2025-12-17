@@ -30,7 +30,7 @@ const AddAsset = () => {
 
         if (userInfo) {
     setValue("hrEmail", userInfo.email);
-    console.log(userInfo)
+   
     setValue("companyName", userInfo?.companyName);
   }
 }, [userInfo, setValue]);

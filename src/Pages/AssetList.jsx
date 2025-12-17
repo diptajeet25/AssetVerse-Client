@@ -150,7 +150,7 @@ const handleEdit = (data) => {
 
  {asset.map((a,i)=>
 
-      <tr className='text-2xl text-center'>
+      <tr key={i} className='text-2xl text-center'>
         <th>{i+1}</th>
        <td>
   <div className="flex items-center justify-center gap-3">
