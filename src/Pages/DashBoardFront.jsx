@@ -3,6 +3,7 @@ import useRole from '../Hooks/useRole';
 import { AuthContext } from '../Contexts/AuthContext';
 import AssetList from './AssetList';
 import MyAsset from './MyAsset';
+import Chart from './Chart';
 
 const DashBoardFront = () => {
     const role=useRole();
@@ -19,7 +20,9 @@ const DashBoardFront = () => {
     </div>
     );
     if(role.role==="HR")
-        return <AssetList></AssetList>
+        return<> <AssetList></AssetList>
+        <Chart></Chart>
+        </>
  else if(role.role==="employee")
     return <MyAsset></MyAsset>
 };

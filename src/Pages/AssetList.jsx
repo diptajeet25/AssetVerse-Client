@@ -5,6 +5,7 @@ import useAxiosSecure from '../Hooks/useAxiosSecure';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
+import PieChart from './PieChart';
 
 const AssetList = () => {
     const {user,loading}=use(AuthContext);
@@ -290,6 +291,7 @@ const handleEdit = (data) => {
     </div>
   </div>
 </dialog>
+
 
     </div>
   );
