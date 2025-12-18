@@ -31,6 +31,10 @@ const data = [
   { name: 'Returnable', value: returnableCount.length },
   { name: 'Non-Returnable', value: assets.length - returnableCount.length },
 ];
+ if (!assets.length) {
+    return <p className="text-center text-black">No data available</p>;
+  }
+
   return (
     <PieChart width={300} height={300} className='mx-auto'>
   <Pie

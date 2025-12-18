@@ -1,12 +1,90 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../Contexts/AuthContext';
+import useAxiosSecure from '../Hooks/useAxiosSecure';
+import { useQuery } from '@tanstack/react-query';
+import { useSearchParams } from 'react-router';
+import { toast } from 'react-toastify';
 
-const Package = ({packagePromise}) => {
-    
-  const [packages, setPackages] = useState([]);
+const Package = () => {
+  const[packages,setPackages]=useState([]);
+
 
   useEffect(() => {
-    packagePromise.then(setPackages);
-  }, [packagePromise]);
+  fetch('/packages.json')
+    .then(res => res.json())
+    .then(data => setPackages(data))
+    .catch(err => console.error(err));
+}, []);
+
+
+  const {user,loading}=useContext(AuthContext);
+  const axiosSecure=useAxiosSecure();
+  const [searchParams]=useSearchParams();
+  const sessionId=searchParams.get("session_id");
+  console.log("Session ID:", sessionId);
+
+  
+useEffect(() => {
+    if (sessionId && user) 
+      {
+        console.log("Verifying payment for session ID:", sessionId);
+        axiosSecure.patch(`/payment-successful?session_id=${sessionId}`)
+        .then((res)=>
+        {
+        
+            console.log("Payment verification response:", res.data);
+            if(res.data.modifiedCount>0)
+            {
+              toast.success("Payment Successful! Your package has been updated.");
+              
+            }
+        })
+        .catch(()=>
+        {
+            console.log("Error verifying payment");
+        })
+        
+    }
+}, [sessionId, axiosSecure, user]);
+
+
+  const {data}=useQuery({
+    queryKey:['my-user-package',user?.email],
+    enabled: !!user?.email,
+    queryFn:async()=>
+    {
+      const res=await axiosSecure.get(`/user?email=${user.email}`);
+      return res.data;
+    }
+  })
+  const currentUser=data;
+  
+
+const handlePayment = (pkg) => {
+  const paymentData = {
+    hrEmail: user.email,
+    packageName: pkg.name,
+    price: pkg.price,
+    employeeLimit: pkg.employeeLimit,
+  };
+  console.log("Initiating payment with data:", paymentData);
+
+  axiosSecure.post('/create-checkout-session', paymentData)
+    .then(res => {
+      const checkoutUrl = res.data.url;
+      window.location.replace(checkoutUrl);
+     
+    })
+    .catch(err => {
+      console.error(err);
+    
+    });
+};
+
+  if(loading)
+  {
+    return <div className='text-black'>Loading...</div>;
+  }
   return (
     <div>
         <h1 className="text-4xl font-bold text-center mb-8 mt-8 text-black">Choose the Best Package for Your Team</h1>
@@ -37,9 +115,27 @@ const Package = ({packagePromise}) => {
               </li>
             ))}
           </ul>
-          <button className="w-full text-white py-2 rounded-lg bg-black hover:bg-gray-800">
-            Choose {pkg.name}
+
+          {
+            currentUser?.role !== 'HR' ?  (
+              <p className="text-red-500 mb-4">Only HR users can select a package.</p>
+            ) :
+          
+          
+            currentUser?.subscription === pkg.name ? (
+              <button disabled className="w-full text-white py-2 rounded-lg bg-gray-400 cursor-not-allowed">
+                Current Package
+              </button>
+            ) : (
+         
+         <button onClick={()=>handlePayment(pkg)} className="w-full text-white py-2 rounded-lg bg-black hover:bg-gray-800">
+         
+            Choose Package
           </button>
+            )
+          
+        }
+         
         </div>
       ))}
     </div>

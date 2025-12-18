@@ -24,7 +24,9 @@ const PrivateRoute = ({children}) => {
         return children;
     }
     else{
+      
       toast.warning("You must be logged in to access this page.");
+
         return <Navigate state={location.pathname}  to="/auth/login"></Navigate>
     }
 

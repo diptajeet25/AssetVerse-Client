@@ -80,7 +80,7 @@ const DashBoardLayout = () => {
           </Link>
         </li>
  <li>
-          <Link to="/" className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-xl" data-tip="Upgrade-Package">
+          <Link to="/dashboard/subscription" className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-xl" data-tip="Upgrade-Package">
 
            <GiArmorUpgrade />
             <span className="is-drawer-close:hidden">Upgrade Package</span>

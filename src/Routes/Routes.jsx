@@ -17,6 +17,7 @@ import AssetRequest from "../Pages/AssetRequest";
 import MyEmployees from "../Pages/MyEmployees";
 import MyAsset from "../Pages/MyAsset";
 import MyTeam from "../Pages/MyTeam";
+import Payment from "../Pages/Payment";
 
 
 export const router = createBrowserRouter([
@@ -82,6 +83,10 @@ export const router = createBrowserRouter([
       {
         path:"my-team",
         element:<EmployeeRoute><MyTeam></MyTeam></EmployeeRoute>
+      },
+      {
+        path:"subscription",
+        element:<Payment></Payment>
       }
     ]
 

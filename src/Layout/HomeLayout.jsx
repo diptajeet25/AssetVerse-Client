@@ -11,15 +11,14 @@ import Package from '../Components/Package';
 import Navbar from '../Components/Navbar';
 
 const HomeLayout = () => {
-  const packagePromise=fetch("/packages.json")
-  .then(res=>res.json());
+
     <title>Home-AssetVerse</title>
   return (
     <div>
       <Navbar></Navbar>
         <Hero></Hero>
         <AboutSection></AboutSection>
-        <Package packagePromise={packagePromise}></Package>
+        <Package ></Package>
         <FeaturesSection></FeaturesSection>
         <TestimonialsSection></TestimonialsSection>
         <WorkingProcess></WorkingProcess>
