@@ -5,12 +5,14 @@ import { useQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'react-router';
 import { toast } from 'react-toastify';
 
-const Package = () => {
+const Package = ({setPayment,payment}) => {
   const[packages,setPackages]=useState([]);
+  const [paymentVerified, setPaymentVerified] = useState(false);
 
 
   useEffect(() => {
   fetch('/packages.json')
+
     .then(res => res.json())
     .then(data => setPackages(data))
     .catch(err => console.error(err));
@@ -21,27 +23,34 @@ const Package = () => {
   const axiosSecure=useAxiosSecure();
   const [searchParams]=useSearchParams();
   const sessionId=searchParams.get("session_id");
-  console.log("Session ID:", sessionId);
+ 
 
   
 useEffect(() => {
+
+  if (!sessionId || !user || paymentVerified) return;
+
     if (sessionId && user) 
       {
-        console.log("Verifying payment for session ID:", sessionId);
+        setPayment(true);
+      
         axiosSecure.patch(`/payment-successful?session_id=${sessionId}`)
         .then((res)=>
         {
         
-            console.log("Payment verification response:", res.data);
+          
             if(res.data.modifiedCount>0)
             {
               toast.success("Payment Successful! Your package has been updated.");
-              
+               setPaymentVerified(true);
             }
         })
         .catch(()=>
         {
             console.log("Error verifying payment");
+        }).finally(()=>
+        {
+          setPayment(false);
         })
         
     }
@@ -50,7 +59,8 @@ useEffect(() => {
 
   const {data}=useQuery({
     queryKey:['my-user-package',user?.email],
-    enabled: !!user?.email,
+    enabled: !!user?.email && !payment,
+    refetchOnWindowFocus:true,
     queryFn:async()=>
     {
       const res=await axiosSecure.get(`/user?email=${user.email}`);
@@ -67,7 +77,7 @@ const handlePayment = (pkg) => {
     price: pkg.price,
     employeeLimit: pkg.employeeLimit,
   };
-  console.log("Initiating payment with data:", paymentData);
+
 
   axiosSecure.post('/create-checkout-session', paymentData)
     .then(res => {

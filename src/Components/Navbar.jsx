@@ -52,17 +52,17 @@ const Navbar = () => {
 
     </div>
     const adminLinks=<div className='bg-white flex flex-col'>
-    <Link className='btn bg-white text-black p-2 '>Asset List</Link>
-    <Link className='btn bg-white text-black p-2'>Add Asset</Link>
-    <Link className='btn bg-white text-black p-2'>All Request</Link>
-    <Link className='btn bg-white text-black p-2'>Employee List</Link>
-    <Link className='btn bg-white text-black p-2'> My Profile</Link>
+    <Link to="/dashboard" className='btn bg-white text-black p-2 '>Asset List</Link>
+    <Link to="/dashboard/add-asset" className='btn bg-white text-black p-2'>Add Asset</Link>
+    <Link to="/dashboard/request-asset-list" className='btn bg-white text-black p-2'>All Request</Link>
+    <Link to="/dashboard/my-employees" className='btn bg-white text-black p-2'>Employee List</Link>
+    <Link to="/dashboard/profile" className='btn bg-white text-black p-2'> My Profile</Link>
     <button onClick={handleLogOut} className='btn bg-white text-black p-2'>Log Out</button>
     </div>
 
         const employeeLinks=<div className='bg-white flex flex-col'>
     <Link to="/dashboard/my-assets" className='btn bg-white text-black p-2 '> My Assets </Link>
-    <Link className='btn bg-white text-black p-2'>My Team</Link>
+    <Link to="/dashboard/my-team" className='btn bg-white text-black p-2'>My Team</Link>
     <Link to="/dashboard/request-asset" className='btn bg-white text-black p-2'>Request Asset</Link>
     <Link to="/dashboard/profile" className='btn bg-white text-black p-2'> My Profile</Link>
     <button onClick={handleLogOut} className='btn bg-white text-black p-2'>Log Out</button>

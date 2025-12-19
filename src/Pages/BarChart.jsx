@@ -34,7 +34,7 @@ export default function CustomizeLegendAndTooltipStyle() {
 }
 )
 
-console.log(request);
+
 
 const assetCount=request.reduce((acc,res)=>
 {
@@ -64,7 +64,7 @@ const top5Assets = assetArray
   .slice(0, 5);
 
 
-console.log(top5Assets);
+
 
 
 const data = top5Assets.map((asset) => ({

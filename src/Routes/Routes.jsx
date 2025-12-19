@@ -18,6 +18,7 @@ import MyEmployees from "../Pages/MyEmployees";
 import MyAsset from "../Pages/MyAsset";
 import MyTeam from "../Pages/MyTeam";
 import Payment from "../Pages/Payment";
+import ErrorPage from "../Pages/ErrorPage";
 
 
 export const router = createBrowserRouter([
@@ -90,6 +91,10 @@ export const router = createBrowserRouter([
       }
     ]
 
+  },
+  {
+    path:"*",
+    element:<ErrorPage></ErrorPage>
   }
 
 ]);

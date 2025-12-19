@@ -34,7 +34,7 @@ const handleReturn=(asset)=>
   axiosSecure.patch(`/return-asset/${asset._id}`,asset)
   .then((res)=>
   {
-    console.log(res.data);
+
     if(res.data.assignedAssetUpdate.modifiedCount>0 && res.data.assetUpdate.modifiedCount>0)
     {
      toast.success("Asset Returned Successfully");

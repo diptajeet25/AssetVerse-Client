@@ -10,10 +10,10 @@ const Login = () => {
   const {loginUser}=use(AuthContext);
   const navigate=useNavigate();
   const location=useLocation()
-  console.log(location);
+
   const handleLLogin=(data)=>
   {
-    console.log(data);
+    
     const email=data.email
     const password=data.password
     loginUser(email,password)

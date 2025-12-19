@@ -15,7 +15,7 @@ const GoogleSignIn = () => {
   googleSignIn()
    .then((res)=>
    {
-console.log(res)
+
 
 const userInfo={
     name:res.user.displayName,
@@ -24,9 +24,9 @@ const userInfo={
 
 }
 axiosSecure.post("/users",userInfo)
-.then((result)=>
+.then(()=>
 {
-    console.log(result)
+
     toast.success("Login Successful");
     navigate("/")
 

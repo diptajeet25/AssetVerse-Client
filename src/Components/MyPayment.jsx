@@ -3,16 +3,19 @@ import { AuthContext } from '../Contexts/AuthContext';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
 
-const MyPayment = () => {
+const MyPayment = ({payment}) => {
 
     const {user,loading}=use(AuthContext);
     const axiosSecure=useAxiosSecure();
     const {data:payments=[],isLoading}=useQuery(
         {
             queryKey:['my-payments',user?.email],
-            enabled: !!user?.email,
+            enabled: !!user?.email && !payment,
+            refetchOnWindowFocus:true,
+
             queryFn:async()=>{
                 const res=await axiosSecure.get(`/payments?hrEmail=${user.email}`);
+               
                 return Array.isArray(res.data) ? res.data : [];
                 
         }

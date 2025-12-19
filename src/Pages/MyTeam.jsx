@@ -29,7 +29,7 @@ const MyTeam = () => {
 
 
         const companyName=team.map(t=>t.companyName);
-        console.log(companyName);
+    
 
         const handleFind=(e)=>
         {
@@ -39,7 +39,7 @@ const MyTeam = () => {
            axiosSecure.get(`teamMembers?employeeEmail=${user.email}&companyName=${selectedCompany}`)
             .then((res)=>
             {
-                console.log(res.data);
+               
                 setMyTeam(res.data);
             });
 }
@@ -68,10 +68,10 @@ useEffect(()=>
     axiosSecure.get(`/birthDay?email=${member.employeeEmail}`)
     .then((res)=>
     {
-        console.log(res.data);
+    
         const member=res.data;
         const birthDate=new Date(res.data.dateOfBirth);
-        console.log(birthDate);
+    
         const month=birthDate.getMonth()+1;
         if(month===new Date().getMonth()+1)
         {
@@ -83,7 +83,7 @@ useEffect(()=>
 
 },[myTeam,axiosSecure]);
 
-console.log(currentMonthMembers[0]);
+
 
 
         if(loading || isLoading)

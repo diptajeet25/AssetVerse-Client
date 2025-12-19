@@ -1,4 +1,4 @@
-import React, { use, useRef, useState } from 'react';
+import React, { use, useEffect, useRef, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { AuthContext } from '../Contexts/AuthContext';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
@@ -37,8 +37,12 @@ const {
 });
 
 
-const asset = Array.isArray(data) ? data : [];
+const assetFetch = Array.isArray(data) ? data : [];
 
+const[asset,setAsset]=useState([]);
+useEffect(() => {
+  setAsset(assetFetch);
+}, [assetFetch]);
  
 const handleEdit = (data) => {
   setAssets(data);
@@ -55,7 +59,7 @@ const handleEdit = (data) => {
 
   const handleUpdateAsset=(data)=>
   {
-    console.log(data);
+   
     const availableQuantity=data.quantity - (assets.quantity - assets.availableQuantity);
     data.availableQuantity=availableQuantity;
     axiosSecure.patch(`/asset/${assets._id}`,data)
@@ -107,6 +111,14 @@ const handleEdit = (data) => {
 });
   }
 
+  const handleSearch=(e)=>
+  {
+
+   const searchText=e.target.value.toLowerCase();
+    const filteredAssets=assetFetch.filter(a=>a.productname.toLowerCase().startsWith(searchText));
+    setAsset(filteredAssets);
+  }
+
   if(loading)
   return (
     <div className="flex items-center justify-center h-screen bg-white">
@@ -124,6 +136,11 @@ const handleEdit = (data) => {
   return (
     <div className='text-black min-h-200'>
         <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">Company's Assets: {asset.length}</h2>
+
+        <form className='my-24 mb-8 flex justify-end mx-16'>
+          <input onChange={(e)=>handleSearch(e)} type="text" name="search"  placeholder="Search Asset by Name" className="input text-white input-bordered w-full max-w-xs" >
+          </input>
+          </form>
 
 
         <div className="overflow-x-auto">

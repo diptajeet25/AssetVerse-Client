@@ -1,6 +1,6 @@
 import React, { use } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../Contexts/AuthContext';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
 import { toast } from 'react-toastify';
@@ -8,11 +8,12 @@ import { toast } from 'react-toastify';
 const RegisterHR = () => {
 const {createUser}=use(AuthContext)
 const axiosSecure=useAxiosSecure();
+const navigate=useNavigate();
     const {register,handleSubmit,formState:{ errors } }=useForm();
 
     const handleRegisterHR=(data)=>
     {
-      console.log(data);
+
       const email=data.email
     const password=data.password
     createUser(email,password)
@@ -33,9 +34,10 @@ const axiosSecure=useAxiosSecure();
 
       }
       axiosSecure.post('/users',userInfo)
-      .then((result)=>
+      .then(()=>
       {
-        console.log(result);
+        navigate('/');
+       
       toast.success("HR Registered Successfully");
       })
 

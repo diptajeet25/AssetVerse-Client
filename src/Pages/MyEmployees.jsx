@@ -83,7 +83,7 @@ const handleDelete=(emp)=>
 }
 const handleFinalAssign=(asset)=>
 {
-    console.log(asset);
+  
     const assignInfo={
       assetId:asset._id,
       assetName:asset.productname,
@@ -101,20 +101,20 @@ const handleFinalAssign=(asset)=>
 axiosSecure.post("/assignAssetByHR",assignInfo)
 .then((res)=>
 {
-    console.log(res.data);
+    
 if(res.data.assignedAsset.insertedId  && res.data.updatedAsset.modifiedCount>0)
 {
    toast.success("Asset Assigned Successfully");
-    console.log("here");
+ 
     modalRef.current.close();
     refetch();
     queryClient.invalidateQueries(['my-assets']);     
   queryClient.invalidateQueries(['my-assets-to-assign', user.email]);
 }
 })
-.catch((err)=>
+.catch(()=>
 {
-    console.log(err);
+
     toast.error("Failed to assign asset. Please try again.");
 
 })
@@ -197,13 +197,15 @@ if(res.data.assignedAsset.insertedId  && res.data.updatedAsset.modifiedCount>0)
           )}
 
           {availableAssets.map((asset, index) => (
+            asset.availableQuantity > 0 && (
+            
             <tr key={asset._id} className='text-center'>
               <th>{index + 1}</th>
               <td>{asset.productname}</td>
               <td>{asset.productType}</td>
               <td>{asset.availableQuantity}</td>
               <td><button className="btn btn-primary" onClick={()=>handleFinalAssign(asset)}>Assign</button></td>
-            </tr>
+            </tr>)
           ))}
           
           </tbody>

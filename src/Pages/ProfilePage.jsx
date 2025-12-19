@@ -36,9 +36,9 @@ const ProfilePage = () => {
     }
    const handleUpdateProfile=(data)=>
   {
-    console.log(data);
+   
     data.updatedAt=new Date();
-    console.log(profile._id);
+   
     
     axiosSecure.patch(`/user/${profile._id}`,data)
     .then((res)=>

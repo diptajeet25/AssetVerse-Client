@@ -21,7 +21,7 @@ const AssetRequest = () => {
     const handleApprove=(req)=>{
         axiosSecure.patch(`/requests-approve/${req._id}`,req)
         .then((res)=>{
-            console.log(res.data);
+           
         if (res.data?.requestUpdate?.modifiedCount > 0 && res.data?.assignedAsset.insertedId)
             {
                 refetch();
@@ -42,11 +42,11 @@ const AssetRequest = () => {
         axiosSecure.patch(`/requests-reject/${req._id}`,req)
         .then((res)=>
         {
-          console.log(res.data);
+         
              if(res.data.result?.modifiedCount>0)
             {
                 refetch();
-                console.log(res.data);
+              
 
               
                 toast.success("Request Rejected Successfully");
@@ -70,7 +70,7 @@ const AssetRequest = () => {
 
   return (
     <div>
-         <h2 className="text-3xl font-bold text-center mb-6 text-black  ">All Requests{request.length}</h2>
+         <h2 className="text-3xl font-bold text-center mb-2 text-black  ">All Requests</h2>
 
             <div className="overflow-x-auto mt-16">
     <table className="table text-black text-xl w-full mx-4 mt-8">

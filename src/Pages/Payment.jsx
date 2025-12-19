@@ -1,10 +1,11 @@
-import React, { use } from 'react';
+import React, { use, useState } from 'react';
 import Package from '../Components/Package';
 import { AuthContext } from '../Contexts/AuthContext';
 import MyPayment from '../Components/MyPayment';
 
 const Payment = () => {
     const {user,loading}=use(AuthContext);
+    const [payment,setPayment]=useState(false);
 
     if(loading)
         return (
@@ -19,8 +20,8 @@ const Payment = () => {
             )
   return (
     <div>
-        <Package></Package>
-        <MyPayment></MyPayment>
+        <Package setPayment={setPayment} payment={payment} />
+        <MyPayment payment={payment}></MyPayment>
 
         
 

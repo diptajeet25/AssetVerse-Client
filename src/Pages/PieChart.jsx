@@ -22,10 +22,8 @@ export default function PieChartDefaultIndex({ isAnimationActive = true }) {
 
     }
     })
-console.log(assets);
-const returnableCount=assets.filter(asset=>asset.assetType==="returnable")
-console.log(returnableCount);
 
+const returnableCount=assets.filter(asset=>asset.assetType==="returnable")
 
 const data = [
   { name: 'Returnable', value: returnableCount.length },

@@ -8,6 +8,8 @@ const PrivateRoute = ({children}) => {
     const {user,loading}=use(AuthContext);
 
     if(loading){
+
+
         return (
     <div className="flex items-center justify-center h-screen bg-white">
       <div className="flex flex-col items-center gap-4">
@@ -19,16 +21,18 @@ const PrivateRoute = ({children}) => {
     </div>
   );
     }
+    if(!user)
+    {
+            toast.warning("You must be logged in to access this page.");
+    }
     if(user)
     {
         return children;
     }
-    else{
-      
-      toast.warning("You must be logged in to access this page.");
+  
 
         return <Navigate state={location.pathname}  to="/auth/login"></Navigate>
-    }
+    
 
 
 };
