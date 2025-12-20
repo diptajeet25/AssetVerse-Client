@@ -1,16 +1,100 @@
-# React + Vite
+# AssetVerse 🗂️
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+AssetVerse is a role-based asset management web application designed to help companies efficiently manage organizational assets and employee allocations.  
+The system supports HR and Employee roles with secure authentication, asset assignment workflows, and basic analytics.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🔗 Live Links
+-https://quiet-hotteok-3eb24c.netlify.app
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🧑‍💼 User Roles
+### 👤 HR (Admin)
+- Add, update, and delete company assets
+- Approve or reject employee asset requests
+- Assign assets directly to employees
+- Manage employees (activate / deactivate)
+- View employee list and asset usage
+- Upgrade subscription package (Basic / Standard / Premium)
+- View analytics dashboard (Recharts)
 
-## Expanding the ESLint configuration
+### 👨‍💻 Employee
+- Request available assets
+- View assigned assets
+- Return returnable assets
+- View team members
+- View birthday reminders
+- Manage personal profile
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## ✨ Key Features
+- 🔐 JWT-based Authentication & Authorization
+- 🧾 Role-based Route Protection (HR / Employee)
+- 📦 Asset Management with Quantity Tracking
+- 🔄 Asset Assignment & Return System
+- 👥 Employee Affiliation System (Company-wise)
+- 📊 Analytics Dashboard using Recharts
+- 🎂 Birthday Reminder System
+- 💳 Subscription & Package Limit Logic
+- ⚡ Optimized Data Fetching with React Query
+
+---
+
+## 🛠️ Technologies Used
+
+### Frontend
+- React.js
+- React Router
+- React Hook Form
+- TanStack React Query
+- Axios
+- Tailwind CSS
+- DaisyUI
+- Recharts
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- JWT (JSON Web Token)
+- Firebase Authentication
+
+---
+
+## 🗃️ Database Collections
+- `users`
+- `assets`
+- `requests`
+- `assignedAssets`
+- `employeeAffiliation`
+
+---
+
+## 🔐 Authentication Flow
+- Firebase Authentication for login/signup
+- JWT generated on login
+- JWT stored in localStorage
+- Protected API routes using JWT middleware
+- Role-based access control
+
+---
+
+## 📊 Analytics (HR Dashboard)
+- Total Assets
+- Assigned vs Available Assets
+- Total Employees
+- Asset Distribution by Type
+
+---
+
+## 🚀 How to Run Locally
+
+```### Client
+```bash
+npm install
+npm run dev
+npm install
+npm run dev
