@@ -91,10 +91,8 @@ The system supports HR and Employee roles with secure authentication, asset assi
 ---
 
 ## 🚀 How to Run Locally
-
-```### Client
-```bash
-npm install
-npm run dev
-npm install
-npm run dev
+1. Clone the repository  
+2. Navigate to the project directory  
+3. Install dependencies  
+4. Setup environment variables  
+5. Start the development server  
