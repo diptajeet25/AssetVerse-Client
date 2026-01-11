@@ -23,7 +23,7 @@ const ContactCTA = () => {
           </a>
 
           <a
-            href="#"
+            href="/contact"
             className="px-8 py-3 border border-white text-white font-semibold rounded-xl hover:bg-white/20 transition"
           >
             Contact Us

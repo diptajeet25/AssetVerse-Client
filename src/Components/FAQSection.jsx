@@ -36,15 +36,15 @@ const FAQSection = () => {
   };
 
   return (
-    <section className="bg-white py-20 px-6">
+    <section className="px-6 py-16 w-full md:w-[90%] lg:w-[80%] mx-auto my-8 mt-8">
       <div className="max-w-5xl mx-auto">
 
         {/* HEADER */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
+          <h2 className="text-3xl md:text-4xl font-bold">
             Frequently Asked Questions
           </h2>
-          <p className="text-slate-600 mt-3">
+          <p className="opacity-70 mt-3">
             Everything you need to know about using AssetVerse.
           </p>
         </div>
@@ -54,18 +54,18 @@ const FAQSection = () => {
           {faqs.map((item, i) => (
             <div
               key={i}
-              className="border border-slate-200 rounded-xl shadow-sm bg-slate-50"
+              className="border border-base-300 rounded-xl shadow-sm bg-base-100"
             >
               <button
                 className="w-full flex justify-between items-center p-5 text-left"
                 onClick={() => toggleFAQ(i)}
               >
-                <span className="text-base md:text-lg font-medium text-slate-900">
+                <span className="text-base md:text-lg font-medium">
                   {item.question}
                 </span>
 
                 <svg
-                  className={`w-5 h-5 text-slate-600 transition-transform ${
+                  className={`w-5 h-5 opacity-70 transition-transform ${
                     openIndex === i ? "rotate-180" : ""
                   }`}
                   fill="none"
@@ -78,7 +78,7 @@ const FAQSection = () => {
               </button>
 
               {openIndex === i && (
-                <div className="px-5 pb-5 text-slate-600 text-sm leading-relaxed">
+                <div className="px-5 pb-5 opacity-70 text-sm leading-relaxed">
                   {item.answer}
                 </div>
               )}

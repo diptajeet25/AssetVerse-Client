@@ -60,10 +60,10 @@ const handleAddAsset=(data)=>
 if(loading)
   return (
 
-    <div className="flex items-center justify-center h-screen bg-white">
+    <div className="flex items-center justify-center h-screen bg-base-100">
       <div className="flex flex-col items-center gap-4">
-        <span className="loading loading-ring loading-lg text-blue-600"></span>
-        <p className="text-lg font-semibold text-gray-600 animate-pulse">
+        <span className="loading loading-ring loading-lg text-primary"></span>
+        <p className="text-lg font-semibold text-base-content opacity-70 animate-pulse">
           Please wait...
         </p>
       </div>
@@ -71,11 +71,11 @@ if(loading)
 
 
   return (
-   <div className="w-full lg:w-[50%] bg-gray-100  mx-auto my-16 rounded-3xl p-8 ">
-        <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">Add Asset</h2>
+   <div className="w-full lg:w-[50%] bg-base-200  mx-auto my-16 rounded-3xl p-8 ">
+        <h2 className="text-3xl font-bold text-center mb-6 text-base-content">Add Asset</h2>
         <form onSubmit={handleSubmit(handleAddAsset)}  className="space-y-5 mb-2">
             <div>
-     <label className="font-semibold text-black">Product Name</label>
+     <label className="font-semibold text-base-content">Product Name</label>
           <input
             type="text"
             {...register("productname",{required:true})}
@@ -85,7 +85,7 @@ if(loading)
            {errors.productname?.type==="required" && <p className='text-red-600'>Name is required</p>}
 </div>
           <div>
-     <label className="font-semibold text-black">Product Image</label>
+     <label className="font-semibold text-base-content">Product Image</label>
           <input
             type="url"
             {...register("productImage",{required:true})}
@@ -95,7 +95,7 @@ if(loading)
            {errors.productImage?.type==="required" && <p className='text-red-600'>Image Link is required</p>}
 </div>
 <div>
-  <label className="font-semibold text-black">Product Type</label>
+  <label className="font-semibold text-base-content">Product Type</label>
 
   <select
     {...register("productType", { required: true })}
@@ -114,7 +114,7 @@ if(loading)
   )}
 </div>
 <div>
-  <label className="font-semibold text-black">Product Quantity</label>
+  <label className="font-semibold text-base-content">Product Quantity</label>
 
   <input
     type="number"
@@ -135,7 +135,7 @@ if(loading)
   )}
 </div>
 <div>
-  <label className="font-semibold text-black">HR Email</label>
+  <label className="font-semibold text-base-content">HR Email</label>
 
   <input
     type="email"
@@ -155,7 +155,7 @@ if(loading)
 </div>
 
 <div>
-  <label className="font-semibold text-black">Company Name</label>
+  <label className="font-semibold text-base-content">Company Name</label>
 
   <input
     type="text"
@@ -173,7 +173,7 @@ if(loading)
   )}
 
 </div>
-<button type="submit" className="btn btn-primary text-black  w-full text-lg mt-4">
+<button type="submit" className="btn btn-primary w-full text-lg mt-4">
        Add Asset
         </button>
         </form>

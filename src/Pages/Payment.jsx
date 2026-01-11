@@ -11,8 +11,8 @@ const Payment = () => {
         return (
             <div className="flex justify-center items-center min-h-screen">
       <div className="flex flex-col items-center gap-4">
-        <span className="loading loading-ring loading-lg text-blue-600"></span>
-        <p className="text-lg font-semibold text-gray-600 animate-pulse">
+        <span className="loading loading-ring loading-lg text-primary"></span>
+        <p className="text-lg font-semibold text-base-content opacity-70 animate-pulse">
             Please wait...
         </p>
         </div>

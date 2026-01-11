@@ -25,15 +25,15 @@ const steps = [
 
 const WorkingProcess = () => {
   return (
-    <section className="bg-slate-50 py-20 px-6">
+    <section className="px-6 py-16 w-full md:w-[90%] lg:w-[80%] mx-auto my-8 mt-8">
       <div className="max-w-7xl mx-auto">
 
         {/* HEADER */}
         <div className="text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
+          <h2 className="text-3xl md:text-4xl font-bold">
             How AssetVerse Works
           </h2>
-          <p className="text-slate-600 mt-3 max-w-xl mx-auto">
+          <p className="opacity-70 mt-3 max-w-xl mx-auto">
             A simple, streamlined 3-step workflow that makes asset management effortless.
           </p>
         </div>
@@ -43,15 +43,15 @@ const WorkingProcess = () => {
           {steps.map((step, i) => (
             <div
               key={i}
-              className="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:shadow-md transition text-center"
+              className="bg-base-200 rounded-2xl p-8 shadow-sm border border-base-300 hover:shadow-md transition text-center"
             >
               <div className="flex justify-center mb-4">{step.icon}</div>
 
-              <h3 className="text-xl font-semibold text-slate-900 mb-2">
+              <h3 className="text-xl font-semibold mb-2">
                 {step.title}
               </h3>
 
-              <p className="text-slate-600 text-sm leading-relaxed">
+              <p className="opacity-70 text-sm leading-relaxed">
                 {step.desc}
               </p>
             </div>

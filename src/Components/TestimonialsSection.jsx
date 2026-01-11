@@ -23,15 +23,15 @@ const testimonials = [
 
 const TestimonialsSection = () => {
   return (
-    <section className="bg-white py-20 px-6">
+    <section className=" px-6 py-16 w-full md:w-[90%] lg:w-[80%] mx-auto my-8 mt-8">
       <div className="max-w-7xl mx-auto">
 
         {/* HEADER */}
         <div className="text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
+          <h2 className="text-3xl md:text-4xl font-bold">
             Trusted by Modern Teams
           </h2>
-          <p className="text-slate-600 mt-3 max-w-2xl mx-auto">
+          <p className="opacity-70 mt-3 max-w-2xl mx-auto">
             Companies around the world rely on AssetVerse to track devices, streamline workflow,  
             and improve HR management efficiency.
           </p>
@@ -49,17 +49,17 @@ const TestimonialsSection = () => {
           {testimonials.map((item, i) => (
             <div
               key={i}
-              className="bg-slate-50 p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition"
+              className="bg-base-200 p-6 rounded-2xl shadow-sm border border-base-300 hover:shadow-md transition"
             >
-              <h3 className="text-xl font-semibold text-slate-900 mb-2">
+              <h3 className="text-xl font-semibold mb-2">
                 {item.name}
               </h3>
 
-              <p className="text-slate-600 text-sm leading-relaxed mb-4">
+              <p className="opacity-70 text-sm leading-relaxed mb-4">
                 "{item.feedback}"
               </p>
 
-              <p className="text-sm font-medium text-slate-800">{item.person}</p>
+              <p className="text-sm font-medium">{item.person}</p>
             </div>
           ))}
         </div>
@@ -70,9 +70,9 @@ const TestimonialsSection = () => {
 };
 
 const Stat = ({ number, label }) => (
-  <div className="text-center bg-slate-50 rounded-2xl py-6 shadow-sm border border-slate-100">
+  <div className="text-center bg-base-100 rounded-2xl py-6 shadow-sm border border-base-300">
     <h3 className="text-3xl md:text-4xl font-bold text-emerald-600">{number}</h3>
-    <p className="text-slate-600 mt-1 text-sm">{label}</p>
+    <p className="opacity-70 mt-1 text-sm">{label}</p>
   </div>
 );
 

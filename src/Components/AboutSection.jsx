@@ -31,15 +31,15 @@ const benefits = [
 
 const AboutSection = () => {
   return (
-    <section className="bg-white py-20 px-6">
+    <section className=" px-6 py-16 w-full md:w-[90%] lg:w-[80%] mx-auto my-8 mt-16">
       <div className="max-w-7xl mx-auto">
 
        
         <div className="text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
+          <h2 className="text-3xl md:text-4xl font-bold">
             Why Choose AssetVerse?
           </h2>
-          <p className="text-slate-600 mt-3 max-w-2xl mx-auto">
+          <p className="opacity-70 mt-3 max-w-2xl mx-auto">
             A modern asset management solution designed to streamline HR tasks
             and improve company efficiency with powerful, yet simple tools.
           </p>
@@ -50,15 +50,15 @@ const AboutSection = () => {
           {benefits.map((item, idx) => (
             <div
               key={idx}
-              className="bg-slate-50 rounded-2xl p-6 shadow-sm hover:shadow-md transition border border-slate-100"
+              className="bg-base-100 rounded-2xl p-6 shadow-sm hover:shadow-md transition border border-base-300"
             >
               <div className="mb-4">{item.icon}</div>
 
-              <h3 className="text-xl font-semibold text-slate-900 mb-2">
+              <h3 className="text-xl font-semibold mb-2">
                 {item.title}
               </h3>
 
-              <p className="text-slate-600 text-sm leading-relaxed">
+              <p className="opacity-70 text-sm leading-relaxed">
                 {item.desc}
               </p>
             </div>

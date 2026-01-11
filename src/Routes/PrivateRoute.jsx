@@ -11,10 +11,10 @@ const PrivateRoute = ({children}) => {
 
 
         return (
-    <div className="flex items-center justify-center h-screen bg-white">
+    <div className="flex items-center justify-center h-screen bg-base-100">
       <div className="flex flex-col items-center gap-4">
-        <span className="loading loading-ring loading-lg text-blue-600"></span>
-        <p className="text-lg font-semibold text-gray-600 animate-pulse">
+        <span className="loading loading-ring loading-lg text-primary"></span>
+        <p className="text-lg font-semibold text-base-content opacity-70 animate-pulse">
           Please wait...
         </p>
       </div>

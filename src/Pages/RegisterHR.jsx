@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../Contexts/AuthContext';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
 import { toast } from 'react-toastify';
+import AutoCredential from '../Components/AutoCredential';
 
 const RegisterHR = () => {
 const {createUser}=use(AuthContext)
@@ -46,13 +47,13 @@ const navigate=useNavigate();
     }
   
   return (
-    <div className="w-full lg:w-[50%] mx-auto my-16 bg-gray-100 rounded-3xl p-8 ">
-        <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">Join As HR</h2>
+    <div className="w-full lg:w-[50%] mx-auto my-16 bg-base-200 rounded-3xl p-8 ">
+        <h2 className="text-3xl font-bold text-center mb-6">Join As HR</h2>
         <form onSubmit={handleSubmit(handleRegisterHR)} className="space-y-5">
 
             
 <div>
-     <label className="font-semibold text-black">Full Name</label>
+     <label className="font-semibold">Full Name</label>
           <input
             type="text"
             {...register("name",{required:true})}
@@ -64,7 +65,7 @@ const navigate=useNavigate();
           
 </div>
 <div>
-     <label className="font-semibold text-black">Profile Image</label>
+     <label className="font-semibold">Profile Image</label>
           <input type="url" 
           {...register("profileImage",{required:true})}
           placeholder='Enter Your Profile Image URL'
@@ -76,7 +77,7 @@ const navigate=useNavigate();
 </div>
 
 <div>
-     <label className="font-semibold text-black">Company Name</label>
+     <label className="font-semibold">Company Name</label>
           <input
             type="text"
             {...register("companyName",{required:true})}
@@ -89,7 +90,7 @@ const navigate=useNavigate();
 </div>
 
 <div>
-     <label className="font-semibold text-black">Company Logo</label>
+     <label className="font-semibold">Company Logo</label>
           <input type="url" 
           {...register("companyLogo",{required:true})}
           placeholder='Enter Your Company Logo URL'
@@ -102,7 +103,7 @@ const navigate=useNavigate();
 
 
 <div>
-     <label className="font-semibold text-black">Email</label>
+     <label className="font-semibold">Email</label>
           <input
             type="email"
              {...register("email",{required:true})}
@@ -113,7 +114,7 @@ const navigate=useNavigate();
              {errors.email?.type==="required" && <p className='text-red-600'>Email is required</p>}
 </div>
 <div>
-     <label className="font-semibold text-black">Password</label>
+     <label className="font-semibold">Password</label>
           <input
             type="password"
             {...register("password",{required:true,minLength:6,maxLength:12,pattern:/^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9]).*$/,})}
@@ -127,7 +128,7 @@ const navigate=useNavigate();
           {errors.password?.type==="pattern" && <p className='text-red-600'>Password must have one uppercase, one number and one special character</p>}
 </div>
 <div>
-     <label className="font-semibold text-black">Date of Birth</label>
+     <label className="font-semibold">Date of Birth</label>
           <input
             type="date"
              {...register("dateOfBirth",{required:true})}
@@ -138,15 +139,17 @@ const navigate=useNavigate();
           {errors.dateOfBirth?.type==="required" && <p className='text-red-600'>Date Of Birth is required</p> }
 </div>
 
-<button type="submit" className="btn btn-primary text-black  w-full text-lg mt-4">
+<button type="submit" className="btn btn-primary w-full text-lg mt-4">
           Register
         </button>
 
 
         </form>
+        <div className="mt-4"></div>
+        <AutoCredential ></AutoCredential>
         <p className=' mt-4 font-bold text-blue-600 text-center text-lg w-full'><Link to="/auth/register-employee" >Register as Employee</Link></p>
 
-         <p className="text-center mt-2 text-gray-600">
+         <p className="text-center mt-2 opacity-70">
         Already have an account?{" "}
         <Link to="/auth/login"  className="text-blue-600 font-semibold hover:underline">
           Login

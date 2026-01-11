@@ -37,7 +37,7 @@ axiosSecure.post("/users",userInfo)
     }
   return (
 
-         <button type="button"  onClick={handleGoogleSignIn}  className="btn  border-1-black text-black w-full btn-warning my-4 mb-3 border-[#e5e5e5]"> <FaGoogle />Login with Google
+         <button type="button"  onClick={handleGoogleSignIn}  className="btn  border-1-base-content w-full btn-warning my-4 mb-3 border-base-300"> <FaGoogle />Login with Google
 </button>
   
   );

@@ -30,7 +30,7 @@ const data = [
   { name: 'Non-Returnable', value: assets.length - returnableCount.length },
 ];
  if (!assets.length) {
-    return <p className="text-center text-black">No data available</p>;
+    return <p className="text-center text-base-content">No data available</p>;
   }
 
   return (

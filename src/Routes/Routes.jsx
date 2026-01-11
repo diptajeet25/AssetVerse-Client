@@ -19,12 +19,22 @@ import MyAsset from "../Pages/MyAsset";
 import MyTeam from "../Pages/MyTeam";
 import Payment from "../Pages/Payment";
 import ErrorPage from "../Pages/ErrorPage";
+import AboutPage from "../Pages/AboutPage";
+import ContactPage from "../Pages/ContactPage";
 
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayout></HomeLayout>
+  },
+  {
+    path: "/about",
+    element: <AboutPage></AboutPage>
+  },
+  {
+    path: "/contact",
+    element: <ContactPage></ContactPage>
   },
   {
     path:"/auth",

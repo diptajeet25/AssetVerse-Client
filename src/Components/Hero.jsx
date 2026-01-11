@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
-    <div className="bg-slate-100 px-6 py-16 w-full md:w-[90%] lg:w-[80%] mx-auto my-8 mt-16">
+    <div className="bg-base-200 px-6 py-16 w-full md:w-[90%] lg:w-[80%] mx-auto my-8 mt-16">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
 
     
@@ -13,11 +13,11 @@ const Hero = () => {
           transition={{ duration: 0.7, ease: "easeOut" }}
           
         >
-          <h1 className="text-3xl md:text-5xl font-bold text-slate-900 leading-tight">
+          <h1 className="text-3xl md:text-5xl font-bold leading-tight">
             Manage Company Assets Easily with AssetVerse
           </h1>
 
-          <p className="mt-4 text-slate-600 text-lg">
+          <p className="mt-4 opacity-70 text-lg">
             Track devices, assign assets, and manage workflows — all in one simple dashboard.
           </p>
 
@@ -31,7 +31,7 @@ const Hero = () => {
 
             <a
               href="/auth/login"
-              className="px-6 py-3 border border-slate-300 text-slate-700 rounded-lg font-medium hover:bg-slate-100 transition"
+              className="px-6 py-3 btn btn-outline rounded-lg font-medium transition"
             >
               Login
             </a>

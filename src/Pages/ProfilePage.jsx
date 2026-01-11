@@ -60,18 +60,18 @@ const ProfilePage = () => {
 
 if(loading || isLoading)
   return (
-    <div className="flex items-center justify-center h-screen bg-white">
+    <div className="flex items-center justify-center h-screen bg-base-100">
       <div className="flex flex-col items-center gap-4">
-        <span className="loading loading-ring loading-lg text-blue-600"></span>
-        <p className="text-lg font-semibold text-gray-600 animate-pulse">
+        <span className="loading loading-ring loading-lg text-primary"></span>
+        <p className="text-lg font-semibold text-base-content opacity-70 animate-pulse">
           Please wait...
         </p>
       </div>
     </div>);
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
-      <div className="bg-white w-full max-w-md rounded-2xl shadow-xl overflow-hidden">
+    <div className="min-h-screen bg-base-200 flex items-center justify-center p-6">
+      <div className="bg-base-100 w-full max-w-md rounded-2xl shadow-xl overflow-hidden">
         
     
         <div className="bg-linear-to-r from-indigo-500 to-purple-600 p-6 flex flex-col items-center">
@@ -88,20 +88,20 @@ if(loading || isLoading)
 
         <div className="p-6 space-y-4">
           <div>
-            <p className="text-sm text-gray-500">Email</p>
-            <p className="font-medium text-gray-800">{profile.email}</p>
+            <p className="text-sm text-base-content opacity-70">Email</p>
+            <p className="font-medium text-base-content">{profile.email}</p>
           </div>
 
           <div>
-            <p className="text-sm text-gray-500">Date of Birth</p>
-            <p className="font-medium text-gray-800">
+            <p className="text-sm text-base-content opacity-70">Date of Birth</p>
+            <p className="font-medium text-base-content">
              {new Date (profile.dateOfBirth).toDateString()}
             </p>
           </div>
 
           <div>
-            <p className="text-sm text-gray-500">Joined On</p>
-            <p className="font-medium text-gray-800">
+            <p className="text-sm text-base-content opacity-70">Joined On</p>
+            <p className="font-medium text-base-content">
               {new Date(profile.createdAt).toDateString()}
             </p>
           </div>
@@ -118,47 +118,47 @@ if(loading || isLoading)
              GO to Employee Dashboard
             </Link>
           )}
-          <button className="btn w-full bg-gray-300 hover:bg-gray-400 text-gray-800 py-2 rounded-xl font-semibold transition" onClick={handleModalOpen}>Edit Profile</button>
+          <button className="btn w-full btn-outline py-2 rounded-xl font-semibold transition" onClick={handleModalOpen}>Edit Profile</button>
             
           
         </div>
       </div>
 
   <dialog id="my_modal_4" ref={modalref} className="modal">
-  <div className="modal-box w-11/12 max-w-5xl bg-white">
+  <div className="modal-box w-11/12 max-w-5xl bg-base-100">
    
-<h3 className="font-bold text-2xl text-center text-black">Edit Your Information!</h3>
+<h3 className="font-bold text-2xl text-center text-base-content">Edit Your Information!</h3>
      <form onSubmit={handleSubmit(handleUpdateProfile)}  className="space-y-5 mb-2">
             <div>
-     <label className="font-semibold text-black">Your Name</label>
+     <label className="font-semibold text-base-content">Your Name</label>
           <input
             type="text"
             {...register("name",{required:true})}
             placeholder="Enter Your name"
-            className="input input-bordered w-full text-white"
+            className="input input-bordered w-full"
            
           />
            {errors.name?.type==="required" && <p className='text-red-600'>Name is required</p>}
 </div>
           <div>
-     <label className="font-semibold text-black">Profile Image</label>
+     <label className="font-semibold text-base-content">Profile Image</label>
           <input
             type="url"
             {...register("profileImage",{required:true})}
             placeholder="Enter Profile Image"
-            className="input input-bordered w-full text-white"
+            className="input input-bordered w-full"
            
           />
            {errors.profileImage?.type==="required" && <p className='text-red-600'>Image Link is required</p>}
 </div>
 <div>
-  <label className="font-semibold text-black">Date of Birth</label>
+  <label className="font-semibold text-base-content">Date of Birth</label>
 
   <input
     type="date"
     {...register("dateOfBirth")}
     placeholder="Enter Date of Birth"
-    className="input input-bordered w-full text-white"
+    className="input input-bordered w-full"
    
   />
   {
@@ -171,7 +171,7 @@ if(loading || isLoading)
 </div>
 
 
-<button type="submit" className="btn btn-primary text-black  w-full text-lg mt-4">
+<button type="submit" className="btn btn-primary w-full text-lg mt-4">
       Edit Profile
         </button>
         </form>

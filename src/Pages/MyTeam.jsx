@@ -88,10 +88,10 @@ useEffect(()=>
 
         if(loading || isLoading)
         return (
-    <div className="flex items-center justify-center h-screen bg-white">
+    <div className="flex items-center justify-center h-screen bg-base-100">
         <div className="flex flex-col items-center gap-4">
-            <span className="loading loading-ring loading-lg text-blue-600"></span>
-            <p className="text-lg font-semibold text-gray-600 animate-pulse">
+            <span className="loading loading-ring loading-lg text-primary"></span>
+            <p className="text-lg font-semibold text-base-content opacity-70 animate-pulse">
             Please wait...
             </p>
         </div>
@@ -101,7 +101,7 @@ useEffect(()=>
 
   return (
     <div>
-        <h2 className="text-3xl font-bold text-center mb-6 text-black  ">My Team</h2>
+        <h2 className="text-3xl font-bold text-center mb-6 text-base-content  ">My Team</h2>
         <form onSubmit={handleFind} className='flex  items-center justify-center'>
             <select name="company" className="select select-bordered w-full max-w-xs"  >
                 <option value="">Select Company</option>
@@ -118,9 +118,9 @@ useEffect(()=>
 
             </form> 
             <div className="overflow-x-auto mt-8">
-    <table className="table text-black text-xl w-full mx-4 mt-8">
-        <thead className='text-black text-2xl'>
-            <tr className='text-black text-2xl text-center'>
+    <table className="table text-base-content text-xl w-full mx-4 mt-8">
+        <thead className='text-base-content text-2xl'>
+            <tr className='text-base-content text-2xl text-center'>
                 <th>#</th>
                 <th>Name</th>
                 <th>Email</th>
@@ -131,7 +131,7 @@ useEffect(()=>
             {
                 myTeam.length === 0 && !isLoading && (
                     <tr>
-                        <td colSpan="4" className="text-center text-gray-500">
+                        <td colSpan="4" className="text-center text-base-content opacity-70">
                             No team members found
                         </td>
                     </tr>
@@ -152,11 +152,11 @@ useEffect(()=>
 
 
 
-    <h2 className="text-2xl font-bold text-center mb-4 text-black mt-24 ">Team Members with Birthdays This Month</h2>
+    <h2 className="text-2xl font-bold text-center mb-4 text-base-content mt-24 ">Team Members with Birthdays This Month</h2>
     <div className="overflow-x-auto mt-8">
-    <table className="table text-black text-xl w-full mx-4 mt-8">
-        <thead className='text-black text-2xl'>
-            <tr className='text-black text-2xl text-center'>
+    <table className="table text-base-content text-xl w-full mx-4 mt-8">
+        <thead className='text-base-content text-2xl'>
+            <tr className='text-base-content text-2xl text-center'>
                 <th>#</th>
                 <th>Name</th>
                 <th>Email</th>
@@ -169,7 +169,7 @@ useEffect(()=>
             {
                 currentMonthMembers.length === 0 && (
                     <tr>
-                        <td colSpan="4" className="text-center text-gray-500">
+                        <td colSpan="4" className="text-center text-base-content opacity-70">
                             No team members have birthdays this month
                         </td>
                     </tr>

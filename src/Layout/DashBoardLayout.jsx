@@ -12,9 +12,12 @@ import { SiMyget } from "react-icons/si";
 import { PackagePlus } from 'lucide-react';
 import { RiTeamFill } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
+import useTheme from '../Hooks/useTheme';
+import { Sun, Moon } from 'lucide-react';
 
 const DashBoardLayout = () => {
   const role=useRole();
+  const {theme, toggleTheme}=useTheme();
 
 
   return (
@@ -27,6 +30,15 @@ const DashBoardLayout = () => {
        <GoSidebarCollapse />
       </label>
       <div className="px-4">{role?.role} DashBoard</div>
+      <div className="navbar-end px-4">
+        <button 
+          onClick={toggleTheme} 
+          className="btn btn-ghost btn-circle"
+          aria-label="Toggle theme"
+        >
+          {theme === 'dark' ? <Sun size={24} /> : <Moon size={24} />}
+        </button>
+      </div>
     </nav>
   
     <div className="p-4">
